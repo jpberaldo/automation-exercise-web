@@ -1,9 +1,6 @@
 package modulos.login;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -45,6 +42,12 @@ public class LoginTest {
         String verificaTxtTelaCadastro = browser.findElement(By.xpath("//b[text()='Enter Account Information']")).getText();
         Assertions.assertEquals("ENTER ACCOUNT INFORMATION", verificaTxtTelaCadastro);
 
+    }
+
+    @AfterEach
+    @DisplayName("Executa toda vez, depois de cada teste que foi executado")
+    public void afterEach(){
+        this.browser.close();
     }
 
 

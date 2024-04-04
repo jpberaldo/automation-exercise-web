@@ -1,4 +1,4 @@
-package modulos.login;
+package modulos.cadastro;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import paginas.LoginPage;
 
-public class LoginTest {
+public class CadastroTest {
 
     private WebDriver browser;
 
@@ -27,29 +27,26 @@ public class LoginTest {
     }
 
     @Test
-    @DisplayName("Preencher campo nome e email para ir a tela de cadastro")
-    public void preencherCamposNomeAndEmailDoCadastroEClicarNoBotaoSignup() {
-
-        //verificando se o texto "New User Signup!" esta visivel
-        String verificaNome = browser.findElement(By.xpath("//h2[text()='New User Signup!']")).getText();
-        System.out.println(verificaNome);
+    @DisplayName("Preencher primeira parte do cadastro 'Enter account information'")
+    public void preencherPrimeiraParteDoCadastroDoUsuario() {
 
         new LoginPage(browser)
-                .preencherCampoNovoNomeParaCadastro("Testes")
+                .preencherCampoNovoNomeParaCadastro("testes")
                 .preencherCampoEmailParaCadastro("testes@email.com")
-                .clicarNoBotaoCriarNovaConta();
-
-        //Verificando texto da tela da pagina de cadastro
-        String verificaTxtTelaCadastro = browser.findElement(By.xpath("//b[text()='Enter Account Information']")).getText();
-        Assertions.assertEquals("ENTER ACCOUNT INFORMATION", verificaTxtTelaCadastro);
+                .clicarNoBotaoCriarNovaConta()
+                .escolherTitulo(1)
+                .definirSenha("senhanova123")
+                .selecionarDiaMesAno(10, 5, 1) //Ano subentende-se que o valor 1
+                // seria o ano 2021 e vamos até 1900 ou seja o ultimo valor valido seria 121
+                .selecionarCheckboxUm()
+                .selecionarCheckboxDois();
 
     }
 
     @AfterEach
     @DisplayName("Executa toda vez, depois de cada teste que foi executado")
     public void afterEach() {
-        //this.browser.close();
+        this.browser.close();
     }
-
 
 }

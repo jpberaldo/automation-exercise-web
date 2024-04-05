@@ -2,8 +2,10 @@ package modulos.cadastro;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import paginas.LoginPage;
 
 public class CadastroTest {
@@ -27,7 +29,7 @@ public class CadastroTest {
     }
 
     @Test
-    @DisplayName("Preencher primeira parte do cadastro 'Enter account information'")
+    @DisplayName("Test Case 1: Register User")
     public void preencherPrimeiraParteDoCadastroDoUsuario() {
 
         new LoginPage(browser)
@@ -39,7 +41,16 @@ public class CadastroTest {
                 .selecionarDiaMesAno(10, 5, 1) //Ano subentende-se que o valor 1
                 // seria o ano 2021 e vamos até 1900 ou seja o ultimo valor valido seria 121
                 .selecionarCheckboxUm()
-                .selecionarCheckboxDois();
+                .selecionarCheckboxDois()
+                .preencherCampoPrimeiroNome("testes")
+                .preencherCampoUltimoNome("testando")
+                .preencherCampoEmpresa("Google")
+                .preencherCampoEndereco("Times Square")
+                .selecionarPais("United States")
+                .preencherCampoEstado("New York")
+                .preencherCampoCidade("New York")
+                .preencherCep("10036")
+                .preencherCelular("999999999");
 
     }
 

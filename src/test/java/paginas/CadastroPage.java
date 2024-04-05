@@ -68,4 +68,50 @@ public class CadastroPage {
         return this;
     }
 
+    public CadastroPage preencherCampoPrimeiroNome(String primeiroNome) {
+        browser.findElement(By.id("first_name")).sendKeys(primeiroNome);
+        return this;
+    }
+
+    public CadastroPage preencherCampoUltimoNome(String ultimoNome) {
+        browser.findElement(By.id("last_name")).sendKeys(ultimoNome);
+        return this;
+    }
+
+    public CadastroPage preencherCampoEmpresa(String empresa) {
+        browser.findElement(By.id("company")).sendKeys(empresa);
+        return this;
+    }
+
+    public CadastroPage preencherCampoEndereco(String endereco) {
+        browser.findElement(By.id("address1")).sendKeys(endereco);
+        return this;
+    }
+
+    public CadastroPage selecionarPais(String pais) {
+        WebElement elementPais = browser.findElement(By.name("country"));
+        Select selectPais = new Select(elementPais);
+        selectPais.selectByValue(pais);
+        return this;
+    }
+
+    public CadastroPage preencherCampoEstado(String estado) {
+        browser.findElement(By.id("United States")).sendKeys(estado);
+        return this;
+    }
+
+    public CadastroPage preencherCampoCidade(String cidade) {
+        browser.findElement(By.id("city")).sendKeys(cidade);
+        return this;
+    }
+
+    public CadastroPage preencherCep(String cep) {
+        browser.findElement(By.id("zipcode")).sendKeys(cep);
+        return this;
+    }
+
+    public CadastroPage preencherCelular(String celular) {
+        browser.findElement(By.name("mobile_number")).sendKeys(celular);
+        return this;
+    }
 }

@@ -47,17 +47,19 @@ public class CadastroTest {
                 .preencherCampoEmpresa("Google")
                 .preencherCampoEndereco("Times Square")
                 .selecionarPais("United States")
+                .rolarPaginaParaBaixo()
                 .preencherCampoEstado("New York")
                 .preencherCampoCidade("New York")
                 .preencherCep("10036")
-                .preencherCelular("999999999");
+                .preencherCelular("999999999")
+                .clicarNoBotaoCriarConta();
 
     }
 
     @AfterEach
     @DisplayName("Executa toda vez, depois de cada teste que foi executado")
     public void afterEach() {
-        this.browser.close();
+        //this.browser.close();
     }
 
 }

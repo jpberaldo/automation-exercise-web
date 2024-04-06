@@ -1,6 +1,7 @@
 package paginas;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -96,7 +97,7 @@ public class CadastroPage {
     }
 
     public CadastroPage preencherCampoEstado(String estado) {
-        browser.findElement(By.id("United States")).sendKeys(estado);
+        browser.findElement(By.id("state")).sendKeys(estado);
         return this;
     }
 
@@ -114,4 +115,17 @@ public class CadastroPage {
         browser.findElement(By.name("mobile_number")).sendKeys(celular);
         return this;
     }
+
+    public CadastroPage rolarPaginaParaBaixo() {
+        JavascriptExecutor jse = (JavascriptExecutor) browser;
+        jse.executeScript("window.scrollBy(0,500);");
+
+        return this;
+    }
+
+    public CadastroPage clicarNoBotaoCriarConta() {
+        browser.findElement(By.cssSelector("button[data-qa='create-account']")).click();
+        return this;
+    }
+
 }

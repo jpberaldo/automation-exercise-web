@@ -9,5 +9,4 @@ public class InicialPage {
     public InicialPage(WebDriver browser) {
         this.browser = browser;
     }
-
 }

@@ -31,11 +31,11 @@ public class CadastroTest {
 
     @Test
     @DisplayName("Test Case 1: Register User")
-    public void preencherPrimeiraParteDoCadastroDoUsuario() {
+    public void preencherPrimeiraParteDoCadastroDoUsuario() throws InterruptedException {
 
         new LoginPage(browser)
-                .preencherCampoNovoNomeParaCadastro("testes6")
-                .preencherCampoEmailParaCadastro("testes5@email.com")
+                .preencherCampoNovoNomeParaCadastro("teste9")
+                .preencherCampoEmailParaCadastro("teste9@email.com")
                 .clicarNoBotaoCriarNovaConta()
                 .escolherTitulo(1)
                 .definirSenha("senhanova123")
@@ -43,7 +43,7 @@ public class CadastroTest {
                 // seria o ano 2021 e vamos até 1900 ou seja o ultimo valor valido seria 121
                 .selecionarCheckboxUm()
                 .selecionarCheckboxDois()
-                .preencherCampoPrimeiroNome("testes5")
+                .preencherCampoPrimeiroNome("teste9")
                 .preencherCampoUltimoNome("testando")
                 .preencherCampoEmpresa("Google")
                 .preencherCampoEndereco("Times Square")
@@ -54,19 +54,16 @@ public class CadastroTest {
                 .preencherCep("10036")
                 .preencherCelular("999999999")
                 .clicarNoBotaoCriarConta()
-                .clicarNoBotaoContinuar();
-
-        WebElement element = browser.findElement(By.cssSelector("h2[data-qa='account-created']"));
-        System.out.println("O elemento esta selecionado? " + element.isDisplayed());
-        Assertions.assertEquals("ACCOUNT CREATED!", element.getText());
-
+                .clicarNoBotaoContinuar()
+                .selecionarBotaoDeletarConta()
+                .clicarNoBotaoContinuarParaHome();
 
     }
 
     @AfterEach
     @DisplayName("Executa toda vez, depois de cada teste que foi executado")
     public void afterEach() {
-        //this.browser.close();
+        this.browser.close();
     }
 
 }

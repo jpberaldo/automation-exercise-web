@@ -3,16 +3,17 @@ package paginas;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class ContaCriadaPage {
+public class ContaDeletadaPage {
 
     private WebDriver browser;
 
-    public ContaCriadaPage(WebDriver browser) {
+    public ContaDeletadaPage (WebDriver browser){
         this.browser = browser;
     }
 
-    public InicialLogonPage clicarNoBotaoContinuar() {
+    public InicialPage clicarNoBotaoContinuarParaHome() throws InterruptedException {
+        Thread.sleep(3000);
         browser.findElement(By.cssSelector("a[data-qa='continue-button']")).click();
-        return new InicialLogonPage(browser);
+        return new InicialPage (browser);
     }
 }

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import paginas.LoginPage;
@@ -33,8 +34,8 @@ public class CadastroTest {
     public void preencherPrimeiraParteDoCadastroDoUsuario() {
 
         new LoginPage(browser)
-                .preencherCampoNovoNomeParaCadastro("testes")
-                .preencherCampoEmailParaCadastro("testes@email.com")
+                .preencherCampoNovoNomeParaCadastro("testes6")
+                .preencherCampoEmailParaCadastro("testes5@email.com")
                 .clicarNoBotaoCriarNovaConta()
                 .escolherTitulo(1)
                 .definirSenha("senhanova123")
@@ -42,7 +43,7 @@ public class CadastroTest {
                 // seria o ano 2021 e vamos até 1900 ou seja o ultimo valor valido seria 121
                 .selecionarCheckboxUm()
                 .selecionarCheckboxDois()
-                .preencherCampoPrimeiroNome("testes")
+                .preencherCampoPrimeiroNome("testes5")
                 .preencherCampoUltimoNome("testando")
                 .preencherCampoEmpresa("Google")
                 .preencherCampoEndereco("Times Square")
@@ -52,7 +53,13 @@ public class CadastroTest {
                 .preencherCampoCidade("New York")
                 .preencherCep("10036")
                 .preencherCelular("999999999")
-                .clicarNoBotaoCriarConta();
+                .clicarNoBotaoCriarConta()
+                .clicarNoBotaoContinuar();
+
+        WebElement element = browser.findElement(By.cssSelector("h2[data-qa='account-created']"));
+        System.out.println("O elemento esta selecionado? " + element.isDisplayed());
+        Assertions.assertEquals("ACCOUNT CREATED!", element.getText());
+
 
     }
 

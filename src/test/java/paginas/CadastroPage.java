@@ -123,9 +123,9 @@ public class CadastroPage {
         return this;
     }
 
-    public CadastroPage clicarNoBotaoCriarConta() {
+    public ContaCriadaPage clicarNoBotaoCriarConta() {
         browser.findElement(By.cssSelector("button[data-qa='create-account']")).click();
-        return this;
+        return new ContaCriadaPage(browser);
     }
 
 }

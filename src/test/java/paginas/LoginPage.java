@@ -28,4 +28,21 @@ public class LoginPage {
         return new CadastroPage(browser);
     }
 
+    public LoginPage preencherCampoSenhaLogin(String senhaLogin){
+        this.browser.findElement(By.cssSelector("input[data-qa='login-password']")).click();
+        this.browser.findElement(By.cssSelector("input[data-qa='login-password']")).sendKeys(senhaLogin);
+        return this;
+    }
+
+    public LoginPage preencherCampoEmailLogin(String emailLogin){
+        this.browser.findElement(By.cssSelector("input[data-qa='login-email']")).click();
+        this.browser.findElement(By.cssSelector("input[data-qa='login-email']")).sendKeys(emailLogin);
+        return this;
+    }
+
+    public InicialLogonPage selecionarBotaoLogarNaConta() {
+        this.browser.findElement(By.cssSelector("button[data-qa='login-button']")).click();
+        return new InicialLogonPage(browser);
+    }
+
 }

@@ -63,7 +63,7 @@ public class CadastroTest {
     @AfterEach
     @DisplayName("Executa toda vez, depois de cada teste que foi executado")
     public void afterEach() {
-        //this.browser.close();
+        this.browser.close();
     }
 
 }

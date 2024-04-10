@@ -56,24 +56,26 @@ public class LoginTest {
         boolean textoLogin = browser.findElement(By.xpath("//h2[text()='Login to your account']")).isDisplayed();
         System.out.println(textoLogin);
 
+
         new LoginPage(browser)
                 .preencherCampoEmailLogin("teste9@email.com")
                 .preencherCampoSenhaLogin("senhanova123")
                 .selecionarBotaoLogarNaConta()
                 .selecionarBotaoDeletarConta()
-                .fecharPropaganda();
+                .fecharPropaganda()
+                .clicarNoBotaoContinuarParaHome();
 
 
         browser.findElement(By.cssSelector("h2[data-qa='account-deleted']")).isDisplayed();
         String msg = browser.findElement(By.cssSelector("h2[data-qa='account-deleted']")).getText();
-        Assertions.assertEquals("Account Deleted!", msg);
+        Assertions.assertEquals("ACCOUNT DELETED!", msg);
 
     }
 
     @AfterEach
     @DisplayName("Executa toda vez, depois de cada teste que foi executado")
     public void afterEach() {
-        //this.browser.close();
+        this.browser.close();
     }
 
 

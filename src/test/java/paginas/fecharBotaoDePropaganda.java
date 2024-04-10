@@ -1,5 +1,5 @@
 package paginas;
 
 public interface fecharBotaoDePropaganda {
-    InicialPage fecharPropaganda() throws InterruptedException;
+    <T> T fecharPropaganda() throws InterruptedException;
 }

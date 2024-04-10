@@ -12,7 +12,7 @@ public class InicialLogonPage {
     }
 
     public ContaDeletadaPage selecionarBotaoDeletarConta() throws InterruptedException {
-        //Thread.sleep(3000);
+        Thread.sleep(3000);
         browser.findElement(By.xpath("//a[text()=' Delete Account']")).click();
         return new ContaDeletadaPage(browser);
     }

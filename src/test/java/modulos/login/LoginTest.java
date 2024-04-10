@@ -50,13 +50,23 @@ public class LoginTest {
 
     @Test
     @DisplayName("Test Case 2: Login User with correct email and password")
-    public void fazerLoginComDadosValidos(){
+    public void fazerLoginComDadosValidos() throws InterruptedException {
 
         browser.findElement(By.xpath("//a[text()=' Signup / Login']")).click();
+        boolean textoLogin = browser.findElement(By.xpath("//h2[text()='Login to your account']")).isDisplayed();
+        System.out.println(textoLogin);
 
         new LoginPage(browser)
                 .preencherCampoEmailLogin("teste9@email.com")
-                .preencherCampoSenhaLogin("senhanova123");
+                .preencherCampoSenhaLogin("senhanova123")
+                .selecionarBotaoLogarNaConta()
+                .selecionarBotaoDeletarConta()
+                .fecharPropaganda();
+
+
+        browser.findElement(By.cssSelector("h2[data-qa='account-deleted']")).isDisplayed();
+        String msg = browser.findElement(By.cssSelector("h2[data-qa='account-deleted']")).getText();
+        Assertions.assertEquals("Account Deleted!", msg);
 
     }
 

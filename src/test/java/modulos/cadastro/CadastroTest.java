@@ -54,16 +54,16 @@ public class CadastroTest {
                 .preencherCep("10036")
                 .preencherCelular("999999999")
                 .clicarNoBotaoCriarConta()
-                .clicarNoBotaoContinuar()
-                .selecionarBotaoDeletarConta()
-                .clicarNoBotaoContinuarParaHome();
+                .clicarNoBotaoContinuar();
+                //.selecionarBotaoDeletarConta()
+                //.clicarNoBotaoContinuarParaHome();
 
     }
 
     @AfterEach
     @DisplayName("Executa toda vez, depois de cada teste que foi executado")
     public void afterEach() {
-        this.browser.close();
+        //this.browser.close();
     }
 
 }

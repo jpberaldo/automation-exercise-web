@@ -72,6 +72,23 @@ public class LoginTest {
 
     }
 
+    @Test
+    @DisplayName("Test Case 3: Login User with incorrect email and password")
+    public void fazerLoginComDadosInvalidos(){
+
+        browser.findElement(By.xpath("//a[text()=' Signup / Login']")).click();
+
+        new LoginPage(browser)
+                .preencherCampoEmailLogin("testes@testes")
+                .preencherCampoSenhaLogin("111111")
+                .selecionarBotaoLogarNaConta();
+
+       String msgErro = browser.findElement(By.cssSelector("p[style='color: red;']")).getText();
+       Assertions.assertEquals("Your email or password is incorrect!",msgErro);
+        System.out.printf(msgErro);
+
+    }
+
     @AfterEach
     @DisplayName("Executa toda vez, depois de cada teste que foi executado")
     public void afterEach() {

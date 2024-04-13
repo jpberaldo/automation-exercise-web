@@ -6,8 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import paginas.LoginPage;
 
-import java.time.Duration;
-
 public class LoginTest {
 
     private WebDriver browser;
@@ -74,7 +72,7 @@ public class LoginTest {
 
     @Test
     @DisplayName("Test Case 3: Login User with incorrect email and password")
-    public void fazerLoginComDadosInvalidos(){
+    public void fazerLoginComDadosInvalidos() {
 
         browser.findElement(By.xpath("//a[text()=' Signup / Login']")).click();
 
@@ -83,15 +81,15 @@ public class LoginTest {
                 .preencherCampoSenhaLogin("111111")
                 .selecionarBotaoLogarNaConta();
 
-       String msgErro = browser.findElement(By.cssSelector("p[style='color: red;']")).getText();
-       Assertions.assertEquals("Your email or password is incorrect!",msgErro);
+        String msgErro = browser.findElement(By.cssSelector("p[style='color: red;']")).getText();
+        Assertions.assertEquals("Your email or password is incorrect!", msgErro);
         System.out.printf(msgErro);
 
     }
 
     @Test
     @DisplayName("Test Case 4: Logout User")
-    public void sairDaContaLogada(){
+    public void sairDaContaLogada() {
 
         browser.findElement(By.xpath("//a[text()=' Signup / Login']")).click();
 
@@ -108,6 +106,5 @@ public class LoginTest {
     public void afterEach() {
         this.browser.close();
     }
-
 
 }

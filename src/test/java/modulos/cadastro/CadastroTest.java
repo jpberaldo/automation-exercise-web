@@ -55,8 +55,23 @@ public class CadastroTest {
                 .preencherCelular("999999999")
                 .clicarNoBotaoCriarConta()
                 .clicarNoBotaoContinuar();
-                //.selecionarBotaoDeletarConta()
-                //.clicarNoBotaoContinuarParaHome();
+        //.selecionarBotaoDeletarConta()
+        //.clicarNoBotaoContinuarParaHome();
+
+    }
+
+    @Test
+    @DisplayName("Test Case 5: Register User with existing email")
+    public void tentarRegistarComEmailJaUtilizado() {
+
+        new LoginPage(browser)
+                .preencherCampoNovoNomeParaCadastro("teste9")
+                .preencherCampoEmailParaCadastro("teste9@email.com")
+                .clicarNoBotaoCriarNovaConta();
+
+        String msgErro = browser.findElement(By.cssSelector("p[style='color: red;']")).getText();
+        Assertions.assertEquals("Email Address already exist!", msgErro);
+        System.out.printf(msgErro);
 
     }
 

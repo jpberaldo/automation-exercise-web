@@ -1,4 +1,4 @@
-package modulos.login;
+package modulos.tests;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;

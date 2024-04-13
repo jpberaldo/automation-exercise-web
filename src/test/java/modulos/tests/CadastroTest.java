@@ -1,12 +1,9 @@
-package modulos.cadastro;
+package modulos.tests;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 import paginas.LoginPage;
 
 public class CadastroTest {
@@ -69,9 +66,9 @@ public class CadastroTest {
                 .preencherCampoEmailParaCadastro("teste9@email.com")
                 .clicarNoBotaoCriarNovaConta();
 
-        String msgErro = browser.findElement(By.cssSelector("p[style='color: red;']")).getText();
-        Assertions.assertEquals("Email Address already exist!", msgErro);
-        System.out.printf(msgErro);
+        String msgTela = browser.findElement(By.cssSelector("p[style='color: red;']")).getText();
+        Assertions.assertEquals("Email Address already exist!", msgTela);
+        System.out.printf(msgTela);
 
     }
 

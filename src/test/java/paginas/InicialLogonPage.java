@@ -17,5 +17,10 @@ public class InicialLogonPage {
         return new ContaDeletadaPage(browser);
     }
 
+    public LoginPage selecionarBotaoParaSairDaContaLogada() {
+
+        browser.findElement(By.linkText("Logout")).click();
+        return new LoginPage(browser);
+    }
 
 }

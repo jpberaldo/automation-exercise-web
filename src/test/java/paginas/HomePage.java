@@ -2,11 +2,11 @@ package paginas;
 
 import org.openqa.selenium.WebDriver;
 
-public class InicialPage {
+public class HomePage {
 
     private WebDriver browser;
 
-    public InicialPage(WebDriver browser) {
+    public HomePage(WebDriver browser) {
         this.browser = browser;
     }
 }

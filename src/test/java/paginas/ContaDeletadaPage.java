@@ -12,10 +12,10 @@ public class ContaDeletadaPage implements fecharBotaoDePropaganda {
         this.browser = browser;
     }
 
-    public InicialPage clicarNoBotaoContinuarParaHome() throws InterruptedException {
+    public HomePage clicarNoBotaoContinuarParaHome() throws InterruptedException {
         Thread.sleep(2000);
         browser.findElement(By.cssSelector("a[data-qa='continue-button']")).click();
-        return new InicialPage(browser);
+        return new HomePage(browser);
     }
 
     @Override

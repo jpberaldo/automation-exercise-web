@@ -58,7 +58,7 @@ public class LoginTest {
 
 
         new LoginPage(browser)
-                .preencherCampoEmailLogin("teste9@email.com")
+                .preencherCampoEmailLogin("teste5@email.com")
                 .preencherCampoSenhaLogin("senhanova123")
                 .selecionarBotaoLogarNaConta()
                 .selecionarBotaoDeletarConta()
@@ -86,6 +86,20 @@ public class LoginTest {
        String msgErro = browser.findElement(By.cssSelector("p[style='color: red;']")).getText();
        Assertions.assertEquals("Your email or password is incorrect!",msgErro);
         System.out.printf(msgErro);
+
+    }
+
+    @Test
+    @DisplayName("Test Case 4: Logout User")
+    public void sairDaContaLogada(){
+
+        browser.findElement(By.xpath("//a[text()=' Signup / Login']")).click();
+
+        new LoginPage(browser)
+                .preencherCampoEmailLogin("teste9@email.com")
+                .preencherCampoSenhaLogin("senhanova123")
+                .selecionarBotaoLogarNaConta()
+                .selecionarBotaoParaSairDaContaLogada();
 
     }
 

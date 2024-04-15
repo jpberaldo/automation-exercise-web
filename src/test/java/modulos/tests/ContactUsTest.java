@@ -24,7 +24,7 @@ public class ContactUsTest {
 
     @Test
     @DisplayName("Test Case 6: Contact Us Form")
-    public void preencherFormularioNaPaginaDeContato(){
+    public void preencherFormularioNaPaginaDeContato() throws InterruptedException {
 
         String descricao = "Lorem ipsum dolor sit amet. Ut praesentium fuga est dicta commodi ut reprehenderit velit quo error odio ut nobis commodi sed adipisci consectetur cum quia corrupti? Sit voluptatem excepturi ut iusto impedit et mollitia eligendi vel assumenda magnam. Et minus nihil ex veritatis dolores a iure cupiditate id aperiam dicta in minima voluptatem qui natus pariatur rem debitis velit. Id exercitationem nemo a possimus vero sit neque galisum non neque iste a omnis molestias quo unde voluptate.\n" +
                 "\n";
@@ -35,7 +35,12 @@ public class ContactUsTest {
                 .preencherCampoNome("Testes")
                 .preencherCampoEmail("testes@email.com")
                 .preencherCampoAssunto("Testes")
-                .preencherCampoDescricao(descricao);
+                .preencherCampoDescricao(descricao)
+                .subirArquivo()
+                .clicarNoBotaoSubmit()
+                .clicarNoBotaoOk()
+                .retornarParaPaginaInicial()
+                .fecharPropaganda();
     }
 
 }

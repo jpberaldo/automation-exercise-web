@@ -11,10 +11,15 @@ public class HomePage {
         this.browser = browser;
     }
 
-    public ContactUsPage selecionarBotaoContactUs () {
+    public ContactUsPage selecionarBotaoContactUs() {
         browser.findElement(By.linkText("Contact us")).isDisplayed();
         browser.findElement(By.linkText("Contact us")).click();
 
         return new ContactUsPage(browser);
+    }
+
+    public TestCasePage selecionarBotaoTestCases() {
+        browser.findElement(By.linkText("Test Cases")).click();
+        return new TestCasePage(browser);
     }
 }

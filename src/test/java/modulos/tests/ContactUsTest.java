@@ -1,5 +1,6 @@
 package modulos.tests;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -41,6 +42,12 @@ public class ContactUsTest {
                 .clicarNoBotaoOk()
                 .retornarParaPaginaInicial()
                 .fecharPropaganda();
+    }
+
+    @AfterEach
+    @DisplayName("Executa toda vez depois de cada teste.")
+    public void afterEach() {
+        this.browser.close();
     }
 
 }

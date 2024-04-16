@@ -22,4 +22,9 @@ public class HomePage {
         browser.findElement(By.linkText("Test Cases")).click();
         return new TestCasePage(browser);
     }
+
+    public ProductsPage selecionarBotaoProducts(){
+        browser.findElement(By.cssSelector("a[href='/products']")).click();
+        return new ProductsPage(browser);
+    }
 }

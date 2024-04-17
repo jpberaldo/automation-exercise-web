@@ -2,6 +2,7 @@ package paginas;
 
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -23,10 +24,12 @@ public class ProductsPage implements fecharBotaoDePropaganda {
         return this;
     }
 
-    public ProductsPage selecionarProduto(int numero) {
-        List<WebElement> lista = browser.findElements(By.cssSelector("div[class='col-sm-4']")).stream().collect(Collectors.toList());
-        lista.get(2).click();
-        return this;
+    public ProductsDetailsPage selecionarProduto() {
+        JavascriptExecutor jse = (JavascriptExecutor) browser;
+        jse.executeScript("window.scrollBy(0,250);");
+        browser.findElement(By.cssSelector("a[href='/product_details/1']")).isDisplayed();
+        browser.findElement(By.cssSelector("a[href='/product_details/1']")).click();
+        return new ProductsDetailsPage(browser);
     }
 
     @Override

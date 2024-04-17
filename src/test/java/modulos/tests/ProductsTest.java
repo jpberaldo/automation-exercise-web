@@ -31,7 +31,8 @@ public class ProductsTest {
                 .selecionarBotaoProducts()
                 .fecharPropaganda()
                 .verificaPagina()
-                .selecionarProduto(1);
+                .selecionarProduto()
+                .fecharPropaganda();
 
     }
 

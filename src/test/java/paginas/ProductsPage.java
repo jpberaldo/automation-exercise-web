@@ -5,7 +5,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,11 +21,6 @@ public class ProductsPage implements fecharBotaoDePropaganda {
 
     }
 
-    public ProductsPage verificaPagina() {
-        String titulo = browser.getTitle();
-        Assertions.assertEquals("Automation Exercise - All Products", titulo);
-        return this;
-    }
 
     public ProductsDetailsPage selecionarProduto() {
         JavascriptExecutor jse = (JavascriptExecutor) browser;
@@ -35,19 +33,32 @@ public class ProductsPage implements fecharBotaoDePropaganda {
     @Override
     public ProductsPage fecharPropaganda() throws InterruptedException {
 
-        try {
-            WebElement iframe1 = browser.findElement(By.id("aswift_5"));
-            Thread.sleep(1000);
+        for (int i = 0; i < 6; i++) {
 
-            if (iframe1.isDisplayed()) {
-                browser.switchTo().frame("aswift_5");
-                browser.findElement(By.cssSelector("div[id='dismiss-button']")).click();
-                browser.switchTo().defaultContent();
-            } else {
-                browser.findElement(By.cssSelector("div[id='dismiss-button']")).click();
+            try {
+                String iframeName = "aswift_" + i + "']";
+                WebElement iframe = browser.findElement(By.cssSelector("iframe[id='" + iframeName));
+                Wait<WebDriver> wait = new WebDriverWait(browser, Duration.ofSeconds(10));
+                wait.until(b -> iframe.isDisplayed());
+
+                if (iframe.isDisplayed()) {
+                    browser.switchTo().frame(iframe);
+                    browser.findElement(By.cssSelector("div[id='dismiss-button']")).click();
+                    browser.switchTo().defaultContent();
+                    break;
+
+                } else if (iframe.isDisplayed()) {
+                    browser.switchTo().frame(iframe);
+                    WebElement iframe2 = browser.findElement(By.cssSelector("iframe[id='ad_iframe']"));
+                    browser.switchTo().frame(iframe2);
+                    browser.findElement(By.cssSelector("div[id='dismiss-button']")).click();
+                    browser.switchTo().defaultContent();
+                    break;
+                }
+
+            } catch (Exception e) {
+                System.out.println("Qual foi a excecao: " + e.getMessage());
             }
-        } catch (Exception e) {
-            System.out.println("Qual foi a excecao: " + e.getMessage());
         }
 
         return this;

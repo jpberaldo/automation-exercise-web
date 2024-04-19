@@ -67,8 +67,8 @@ public class ProductsTest {
         new HomePage(browser)
                 .selecionarBotaoProducts()
                 .fecharPropaganda()
-                .pesquisarPorProduto("man")
-                .fecharPropaganda();
+                .pesquisarPorProduto("men");
+//                .fecharPropaganda();
 
         WebElement lista = browser.findElement(By.cssSelector("div[class='col-sm-4']"));
         if (lista.isDisplayed()) {
@@ -81,7 +81,7 @@ public class ProductsTest {
     @AfterEach
     @DisplayName("Executa toda vez depois de cada teste")
     public void afterEach() {
-        //browser.close();
+        // browser.quit();
     }
 
 }

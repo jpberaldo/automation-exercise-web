@@ -24,8 +24,9 @@ public class ProductsDetailsPage implements fecharBotaoDePropaganda {
             try {
                 String iframeName = "aswift_" + i + "']";
                 WebElement iframe = browser.findElement(By.cssSelector("iframe[id='" + iframeName));
-                Wait<WebDriver> wait = new WebDriverWait(browser, Duration.ofSeconds(10));
-                wait.until(b -> iframe.isDisplayed());
+
+//                Wait<WebDriver> wait = new WebDriverWait(browser, Duration.ofSeconds(10));
+//                wait.until(b -> iframe.isDisplayed());
 
                 if (iframe.isDisplayed()) {
                     browser.switchTo().frame(iframe);

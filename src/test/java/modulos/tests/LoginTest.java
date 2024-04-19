@@ -3,7 +3,9 @@ package modulos.tests;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import paginas.HomePage;
 import paginas.LoginPage;
 
 public class LoginTest {
@@ -101,10 +103,27 @@ public class LoginTest {
 
     }
 
+    @Test
+    @DisplayName("Test Case 10: Verify Subscription in home page")
+    public void validarBotaoDeInscricaoPorEmail() {
+
+        new HomePage(browser)
+                .rolarPaginaParaBaixo()
+                .preencherCampoSubscriptionComEmail("email@testes.com");
+
+        WebElement sucesso = browser.findElement(By.id("success-subscribe"));
+        System.out.println(sucesso.isDisplayed() + " :::: " + sucesso.getText());
+
+        WebElement subscriptionTela = browser.findElement(By.xpath("//h2[text()='Subscription']"));
+        System.out.println(subscriptionTela.isDisplayed() + " :::: "+ subscriptionTela.getText());
+
+
+    }
+
     @AfterEach
     @DisplayName("Executa toda vez, depois de cada teste que foi executado")
     public void afterEach() {
-        this.browser.close();
+     //   this.browser.close();
     }
 
 }

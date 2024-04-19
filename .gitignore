@@ -41,3 +41,4 @@ build/
 
 .idea/
 MassaDeTestes.txt
+/src/test/java/Principal.java

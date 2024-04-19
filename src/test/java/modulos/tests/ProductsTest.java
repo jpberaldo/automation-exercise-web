@@ -1,9 +1,6 @@
 package modulos.tests;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import paginas.HomePage;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductsTest {
@@ -60,6 +58,30 @@ public class ProductsTest {
 //
 //        String disponibilidade = browser.findElement(By.xpath("//p[text()=' In Stock']")).getText();
 //        Assertions.assertEquals(" In Stock", disponibilidade);
+    }
+
+    @Test
+    @DisplayName("Test Case 9: Search Product")
+    public void testPesquisarPorProduto() throws InterruptedException {
+
+        new HomePage(browser)
+                .selecionarBotaoProducts()
+                .fecharPropaganda()
+                .pesquisarPorProduto("man")
+                .fecharPropaganda();
+
+        WebElement lista = browser.findElement(By.cssSelector("div[class='col-sm-4']"));
+        if (lista.isDisplayed()) {
+            List<WebElement> listaElement = browser.findElements(By.cssSelector("div[class='col-sm-4']"));
+            listaElement.forEach(System.out::println);
+            System.out.println(listaElement.size());
+        }
+    }
+
+    @AfterEach
+    @DisplayName("Executa toda vez depois de cada teste")
+    public void afterEach() {
+        //browser.close();
     }
 
 }

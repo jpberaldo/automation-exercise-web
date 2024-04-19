@@ -30,6 +30,11 @@ public class ProductsPage implements fecharBotaoDePropaganda {
         return new ProductsDetailsPage(browser);
     }
 
+    public ProductsDetailsPage pesquisarPorProduto(String produto) {
+        browser.findElement(By.id("search_product")).sendKeys(produto);
+        return new ProductsDetailsPage(browser);
+    }
+
     @Override
     public ProductsPage fecharPropaganda() throws InterruptedException {
 

@@ -40,4 +40,9 @@ public class HomePage {
         browser.findElement(By.id("subscribe")).click();
         return this;
     }
+
+    public CartPage selecionarBotaoCart() {
+        browser.findElement(By.cssSelector("a[href='/view_cart']")).click();
+        return new CartPage(browser);
+    }
 }

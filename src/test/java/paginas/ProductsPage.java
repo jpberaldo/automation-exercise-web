@@ -30,7 +30,7 @@ public class ProductsPage implements fecharBotaoDePropaganda {
         return new ProductsDetailsPage(browser);
     }
 
-    public ProductsPage adicionarProdutoAoCarrinho(int numeroProduto) {
+    public ContinuarOuAdicionarProdutosPage adicionarProdutoAoCarrinho(int numeroProduto) {
         JavascriptExecutor jse = (JavascriptExecutor) browser;
         jse.executeScript("window.scrollBy(0,250);");
         WebElement centralizarMouseNoProdutoSelecionado = browser.findElement(By.cssSelector("a[data-product-id='" + numeroProduto + "']"));
@@ -40,13 +40,9 @@ public class ProductsPage implements fecharBotaoDePropaganda {
 
         centralizarMouseNoProdutoSelecionado.click();
 
-        return this;
+        return new ContinuarOuAdicionarProdutosPage(browser);
     }
 
-    public ProductsPage selecionarBotaoContinuarParaAdicionarMaisProdutos() {
-        browser.findElement(By.xpath("//button[@class='btn btn-success close-modal btn-block']")).click();
-        return this;
-    }
 
     @Override
     public ProductsPage fecharPropaganda() throws InterruptedException {

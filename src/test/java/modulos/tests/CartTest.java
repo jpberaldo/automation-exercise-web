@@ -53,7 +53,8 @@ public class CartTest {
                 .fecharPropaganda()
                 .adicionarProdutoAoCarrinho(1)
                 .selecionarBotaoContinuarParaAdicionarMaisProdutos()
-                .adicionarProdutoAoCarrinho(2);
+                .adicionarProdutoAoCarrinho(2)
+                .selecionarContinuarParaCarrinho();
         //finalizar
 
     }

@@ -1,16 +1,10 @@
 package paginas;
 
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-import java.util.List;
-import java.util.stream.Collectors;
+import org.openqa.selenium.interactions.Actions;
 
 public class ProductsPage implements fecharBotaoDePropaganda {
 
@@ -36,10 +30,28 @@ public class ProductsPage implements fecharBotaoDePropaganda {
         return new ProductsDetailsPage(browser);
     }
 
+    public ProductsPage adicionarProdutoAoCarrinho(int numeroProduto) {
+        JavascriptExecutor jse = (JavascriptExecutor) browser;
+        jse.executeScript("window.scrollBy(0,250);");
+        WebElement centralizarMouseNoProdutoSelecionado = browser.findElement(By.cssSelector("a[data-product-id='" + numeroProduto + "']"));
+        new Actions(browser)
+                .moveToElement(centralizarMouseNoProdutoSelecionado)
+                .perform();
+
+        centralizarMouseNoProdutoSelecionado.click();
+
+        return this;
+    }
+
+    public ProductsPage selecionarBotaoContinuarParaAdicionarMaisProdutos() {
+        browser.findElement(By.xpath("//button[@class='btn btn-success close-modal btn-block']")).click();
+        return this;
+    }
+
     @Override
     public ProductsPage fecharPropaganda() throws InterruptedException {
 
-        for (int i = 5; i < 6; i++) {
+        for (int i = 0; i < 6; i++) {
 
             try {
                 String iframeName = "aswift_" + i;

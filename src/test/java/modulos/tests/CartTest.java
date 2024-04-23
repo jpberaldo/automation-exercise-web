@@ -43,4 +43,18 @@ public class CartTest {
         System.out.println(subscriptionTela.isDisplayed() + " :::: " + subscriptionTela.getText());
 
     }
+
+    @Test
+    @DisplayName("Test Case 12: Add Products in Cart")
+    public void validarAdicaoDeProdutosNoCarrinho() throws InterruptedException {
+
+        new HomePage(browser)
+                .selecionarBotaoProducts()
+                .fecharPropaganda()
+                .adicionarProdutoAoCarrinho(1)
+                .selecionarBotaoContinuarParaAdicionarMaisProdutos()
+                .adicionarProdutoAoCarrinho(2);
+        //finalizar
+
+    }
 }

@@ -1,5 +1,6 @@
 package modulos.tests;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import paginas.HomePage;
 
 import java.time.Duration;
+import java.util.List;
 
 public class CartTest {
 
@@ -55,7 +57,21 @@ public class CartTest {
                 .selecionarBotaoContinuarParaAdicionarMaisProdutos()
                 .adicionarProdutoAoCarrinho(2)
                 .selecionarContinuarParaCarrinho();
-        //finalizar
+
+        WebElement prod1 = browser.findElement(By.linkText("Blue Top"));
+        System.out.println(prod1.getText());
+
+        Assertions.assertEquals("Blue Top", prod1.getText());
+
+        WebElement prod2 = browser.findElement(By.linkText("Men Tshirt"));
+        System.out.println(prod2.getText());
+
+        Assertions.assertEquals("Men Tshirt", prod2.getText());
+
+        List<WebElement> listaPreco = browser.findElements(By.cssSelector("td[class='cart_price']"));
+        System.out.println("Tamanho da lista: " + listaPreco.size());
+        System.out.println("\nExibindo precos dos produtos");
+        listaPreco.stream().filter(l -> l.isDisplayed()).forEach(System.out::println);
 
     }
 }

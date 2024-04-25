@@ -1,9 +1,6 @@
 package modulos.tests;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -74,4 +71,24 @@ public class CartTest {
         listaPreco.stream().filter(l -> l.isDisplayed()).forEach(System.out::println);
 
     }
+
+    @Test
+    @DisplayName("Test Case 13: Verify Product quantity in Cart")
+    public void verificarEAlterarQuantidadeDoProdutoNoCarrinho() throws InterruptedException {
+
+        new HomePage(browser)
+                .selecionarBotaoProducts()
+                .fecharPropaganda()
+                .selecionarProduto()
+                .fecharPropaganda()
+                .alterarQuantidadeDoProduto();
+
+    }
+
+    @AfterEach
+    @DisplayName("Executa toda vez, depois cada teste")
+    public void afterEach() {
+        browser.quit();
+    }
+
 }

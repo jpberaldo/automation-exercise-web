@@ -16,6 +16,13 @@ public class ProductsDetailsPage implements fecharBotaoDePropaganda {
         this.browser = browser;
     }
 
+    public ProductsDetailsPage alterarQuantidadeDoProduto() {
+        browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        browser.findElement(By.id("quantity")).clear();
+        browser.findElement(By.id("quantity")).sendKeys("4");
+        return this;
+    }
+
     @Override
     public ProductsDetailsPage fecharPropaganda() throws InterruptedException {
 

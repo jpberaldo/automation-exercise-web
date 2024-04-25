@@ -16,17 +16,18 @@ public class ProductsDetailsPage implements fecharBotaoDePropaganda {
         this.browser = browser;
     }
 
-    public ProductsDetailsPage alterarQuantidadeDoProduto() {
-        browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        browser.findElement(By.id("quantity")).clear();
-        browser.findElement(By.id("quantity")).sendKeys("4");
-        return this;
+    public ContinuarOuAdicionarProdutosPage alterarQuantidadeDoProduto() {
+        //browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        browser.findElement(By.cssSelector("input[type='number']")).clear();
+        browser.findElement(By.cssSelector("input[type='number']")).sendKeys("4");
+        browser.findElement(By.cssSelector("button[type='button']")).click();
+        return new ContinuarOuAdicionarProdutosPage(browser);
     }
 
     @Override
     public ProductsDetailsPage fecharPropaganda() throws InterruptedException {
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 5; i < 6; i++) {
 
             try {
                 String iframeName = "aswift_" + i + "']";

@@ -81,14 +81,20 @@ public class CartTest {
                 .fecharPropaganda()
                 .selecionarProduto()
                 .fecharPropaganda()
-                .alterarQuantidadeDoProduto();
+                .alterarQuantidadeDoProduto()
+                .selecionarContinuarParaCarrinho();
+
+        WebElement qtdAtualCarrinho = browser.findElement(By.cssSelector("button[class='disabled']"));
+        System.out.println(qtdAtualCarrinho.getText());
+
+        Assertions.assertEquals("4", qtdAtualCarrinho);
 
     }
 
     @AfterEach
     @DisplayName("Executa toda vez, depois cada teste")
     public void afterEach() {
-        browser.quit();
+        //browser.quit();
     }
 
 }

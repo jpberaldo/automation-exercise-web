@@ -47,7 +47,7 @@ public class ContactUsTest {
     @AfterEach
     @DisplayName("Executa toda vez depois de cada teste.")
     public void afterEach() {
-        this.browser.close();
+       //browser.quit();
     }
 
 }

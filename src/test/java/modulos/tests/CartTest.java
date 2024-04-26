@@ -87,7 +87,44 @@ public class CartTest {
         WebElement qtdAtualCarrinho = browser.findElement(By.cssSelector("button[class='disabled']"));
         System.out.println(qtdAtualCarrinho.getText());
 
-        Assertions.assertEquals("4", qtdAtualCarrinho);
+        Assertions.assertEquals("4", qtdAtualCarrinho.getText());
+
+    }
+
+    @Test
+    @DisplayName("Test Case 14: Place Order: Register while Checkout")
+    public void fazerRegistroDaContaDuranteACompraDoProduto() throws InterruptedException {
+
+        new HomePage(browser)
+                .selecionarBotaoProducts()
+                .fecharPropaganda()
+                .selecionarProduto()
+                .fecharPropaganda()
+                .alterarQuantidadeDoProduto()
+                .selecionarContinuarParaCarrinho()
+                .selecionarBotaoProcederParaCheckout()
+                .selecionarBotaoRegistroOuLogin()
+                .preencherCampoNovoNomeParaCadastro("test5")
+                .preencherCampoEmailParaCadastro("testesbr5@email.com")
+                .clicarNoBotaoCriarNovaConta()
+                .escolherTitulo(1)
+                .definirSenha("senhanova123")
+                .selecionarDiaMesAno(10, 5, 1) //Ano subentende-se que o valor 1
+                // seria o ano 2021 e vamos até 1900 ou seja o ultimo valor valido seria 121
+                .selecionarCheckboxUm()
+                .selecionarCheckboxDois()
+                .preencherCampoPrimeiroNome("test5")
+                .preencherCampoUltimoNome("testando")
+                .preencherCampoEmpresa("Google")
+                .preencherCampoEndereco("Times Square")
+                .selecionarPais("United States")
+                .rolarPaginaParaBaixo()
+                .preencherCampoEstado("New York")
+                .preencherCampoCidade("New York")
+                .preencherCep("10036")
+                .preencherCelular("999999999")
+                .clicarNoBotaoCriarConta()
+                .clicarNoBotaoContinuar();
 
     }
 

@@ -19,7 +19,7 @@ public class ProductsDetailsPage implements fecharBotaoDePropaganda {
     public ContinuarOuAdicionarProdutosPage alterarQuantidadeDoProduto() {
         //browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         browser.findElement(By.cssSelector("input[type='number']")).clear();
-        browser.findElement(By.cssSelector("input[type='number']")).sendKeys("4");
+        browser.findElement(By.cssSelector("input[type='number']")).sendKeys("1");
         browser.findElement(By.cssSelector("button[type='button']")).click();
         return new ContinuarOuAdicionarProdutosPage(browser);
     }

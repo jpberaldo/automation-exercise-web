@@ -15,4 +15,6 @@ public class ContaCriadaPage {
         browser.findElement(By.cssSelector("a[data-qa='continue-button']")).click();
         return new InicialLogonPage(browser);
     }
+
+
 }

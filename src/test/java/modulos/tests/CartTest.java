@@ -104,8 +104,8 @@ public class CartTest {
                 .selecionarContinuarParaCarrinho()
                 .selecionarBotaoProcederParaCheckout()
                 .selecionarBotaoRegistroOuLogin()
-                .preencherCampoNovoNomeParaCadastro("test5")
-                .preencherCampoEmailParaCadastro("testesbr5@email.com")
+                .preencherCampoNovoNomeParaCadastro("test6")
+                .preencherCampoEmailParaCadastro("testesbr6@email.com")
                 .clicarNoBotaoCriarNovaConta()
                 .escolherTitulo(1)
                 .definirSenha("senhanova123")
@@ -124,7 +124,19 @@ public class CartTest {
                 .preencherCep("10036")
                 .preencherCelular("999999999")
                 .clicarNoBotaoCriarConta()
-                .clicarNoBotaoContinuar();
+                .clicarNoBotaoContinuar()
+                .selecionarBotaoParaCarrinho()
+                .botaoCheckout()
+                .selecionarBotaoPlaceOrder()
+                .preencherNomeCartao()
+                .preencherNumeroCartao()
+                .preencherCVC()
+                .preencherMesCartao()
+                .preencherAnoCartao()
+                .botaoConfirmar()
+                .selecionarBotaoDeletarConta()
+                .fecharPropaganda()
+                .clicarNoBotaoContinuarParaHome();
 
     }
 

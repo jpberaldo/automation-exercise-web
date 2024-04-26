@@ -21,24 +21,33 @@ public class ContaDeletadaPage implements fecharBotaoDePropaganda {
     @Override
     public ContaDeletadaPage fecharPropaganda() throws InterruptedException {
 
-        WebElement iframe1 = browser.findElement(By.cssSelector("iframe[id='aswift_1']"));
+        for (int i = 0; i < 6; i++) {
 
-        if (iframe1.isDisplayed()) {
-            Thread.sleep(1000);
-            browser.switchTo().frame("aswift_1");
-            Thread.sleep(1000);
-            browser.findElement(By.cssSelector("div[id='dismiss-button']")).click();
-            browser.switchTo().defaultContent();
+            try {
+                String iframeName = "aswift_" + i;
+                WebElement iframe = browser.findElement(By.id(iframeName));
+//                Wait<WebDriver> wait = new WebDriverWait(browser, Duration.ofSeconds(10));
+//                wait.until(b -> iframe.isDisplayed());
 
-        } else if (iframe1.isDisplayed()) {
-            Thread.sleep(1000);
-            browser.switchTo().frame("aswift_1");
-            Thread.sleep(1000);
-            browser.switchTo().frame("ad_iframe");
-            Thread.sleep(1000);
-            browser.findElement(By.cssSelector("div[id='dismiss-button']")).click();
-            browser.switchTo().defaultContent();
+                if (iframe.isDisplayed()) {
+                    browser.switchTo().frame(iframe);
+                    browser.findElement(By.id("dismiss-button")).click();
+                    browser.switchTo().defaultContent();
+
+                } else if (iframe.isDisplayed()) {
+                    browser.switchTo().frame(iframe);
+                    WebElement iframe2 = browser.findElement(By.id("ad_iframe"));
+                    browser.switchTo().frame(iframe2);
+                    browser.findElement(By.id("dismiss-button")).click();
+                    browser.switchTo().defaultContent();
+
+                }
+
+            } catch (Exception e) {
+                System.out.println("Qual foi a excecao: " + e.getMessage());
+            }
         }
+
         return this;
     }
 }

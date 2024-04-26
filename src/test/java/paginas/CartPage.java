@@ -22,6 +22,11 @@ public class CartPage {
         return this;
     }
 
+    public CheckoutPage botaoCheckout(){
+        browser.findElement(By.xpath("//a[text()='Proceed To Checkout']")).click();
+        return new CheckoutPage(browser);
+    }
+
     public LoginPage selecionarBotaoRegistroOuLogin() {
         browser.findElement(By.linkText("Register / Login")).click();
         return new LoginPage(browser);

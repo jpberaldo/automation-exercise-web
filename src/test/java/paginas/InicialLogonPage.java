@@ -18,9 +18,13 @@ public class InicialLogonPage {
     }
 
     public LoginPage selecionarBotaoParaSairDaContaLogada() {
-
         browser.findElement(By.linkText("Logout")).click();
         return new LoginPage(browser);
+    }
+
+    public CartPage selecionarBotaoParaCarrinho() {
+        browser.findElement(By.linkText("Cart")).click();
+        return new CartPage(browser);
     }
 
 }

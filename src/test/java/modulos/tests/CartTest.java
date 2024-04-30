@@ -211,6 +211,21 @@ public class CartTest {
                 .botaoConfirmar();
     }
 
+    @Test
+    @DisplayName("Test Case 17: Remove Products From Cart")
+    public void removerProdutoDoCarrinho() throws InterruptedException {
+
+        new HomePage(browser)
+                .selecionarBotaoProducts()
+                .fecharPropaganda()
+                .adicionarProdutoAoCarrinho(1)
+                .selecionarBotaoContinuarParaAdicionarMaisProdutos()
+                .adicionarProdutoAoCarrinho(2)
+                .selecionarContinuarParaCarrinho()
+                .removerProdutoDoCarrinho();
+
+    }
+
     @AfterEach
     @DisplayName("Executa toda vez, depois cada teste")
     public void afterEach() {

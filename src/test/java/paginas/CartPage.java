@@ -27,7 +27,7 @@ public class CartPage {
         return new CheckoutPage(browser);
     }
 
-    public CheckoutPage botaoCheckout(){
+    public CheckoutPage botaoCheckout() {
         browser.findElement(By.xpath("//a[text()='Proceed To Checkout']")).click();
         return new CheckoutPage(browser);
     }
@@ -35,6 +35,11 @@ public class CartPage {
     public LoginPage selecionarBotaoRegistroOuLogin() {
         browser.findElement(By.linkText("Register / Login")).click();
         return new LoginPage(browser);
+    }
+
+    public CartPage removerProdutoDoCarrinho() {
+        browser.findElement(By.cssSelector("a[data-product-id='1']")).click();
+        return this;
     }
 
 }

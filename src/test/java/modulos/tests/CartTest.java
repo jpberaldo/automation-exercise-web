@@ -187,6 +187,30 @@ public class CartTest {
 
     }
 
+    @Test
+    @DisplayName("Test Case 16: Place Order: Login before Checkout")
+    public void logarNaContaAntesDeIrParaCarrinho() throws InterruptedException {
+
+        new LoginPage(browser)
+                .preencherCampoEmailLogin("teste9@email.com")
+                .preencherCampoSenhaLogin("senhanova123")
+                .selecionarBotaoLogarNaConta()
+                .selecionarBotaoParaPaginaProdutos()
+                .fecharPropaganda()
+                .selecionarProduto()
+                .fecharPropaganda()
+                .alterarQuantidadeDoProduto()
+                .selecionarContinuarParaCarrinho()
+                .selecionarBotaoProcederParaCheckoutJaLogadoNaConta()
+                .selecionarBotaoPlaceOrder()
+                .preencherNomeCartao()
+                .preencherNumeroCartao()
+                .preencherCVC()
+                .preencherMesCartao()
+                .preencherAnoCartao()
+                .botaoConfirmar();
+    }
+
     @AfterEach
     @DisplayName("Executa toda vez, depois cada teste")
     public void afterEach() {

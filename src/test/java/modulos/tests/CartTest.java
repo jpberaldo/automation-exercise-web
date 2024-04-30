@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import paginas.HomePage;
+import paginas.LoginPage;
 
 import java.time.Duration;
 import java.util.List;
@@ -24,7 +25,7 @@ public class CartTest {
         //acessar site abaixo
         this.browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         this.browser.manage().window().maximize();
-        this.browser.get("https://automationexercise.com");
+        this.browser.get("https://automationexercise.com/login");
     }
 
     @Test
@@ -137,6 +138,52 @@ public class CartTest {
                 .selecionarBotaoDeletarConta()
                 .fecharPropaganda()
                 .clicarNoBotaoContinuarParaHome();
+
+    }
+
+    @Test
+    @DisplayName("Test Case 15: Place Order: Register before Checkout")
+    public void realizarCadastroAntesDeAdicionarParaOCarrinho() throws InterruptedException {
+
+        new LoginPage(browser)
+                .preencherCampoNovoNomeParaCadastro("teste15")
+                .preencherCampoEmailParaCadastro("teste15@email.com")
+                .clicarNoBotaoCriarNovaConta()
+                .escolherTitulo(1)
+                .definirSenha("senhanova123")
+                .selecionarDiaMesAno(10, 5, 1) //Ano subentende-se que o valor 1
+                // seria o ano 2021 e vamos até 1900 ou seja o ultimo valor valido seria 121
+                .selecionarCheckboxUm()
+                .selecionarCheckboxDois()
+                .preencherCampoPrimeiroNome("teste15")
+                .preencherCampoUltimoNome("testando")
+                .preencherCampoEmpresa("Google")
+                .preencherCampoEndereco("Times Square")
+                .selecionarPais("United States")
+                .rolarPaginaParaBaixo()
+                .preencherCampoEstado("New York")
+                .preencherCampoCidade("New York")
+                .preencherCep("10036")
+                .preencherCelular("999999999")
+                .clicarNoBotaoCriarConta()
+                .clicarNoBotaoContinuar()
+                .selecionarBotaoParaPaginaProdutos()
+                .fecharPropaganda()
+                .selecionarProduto()
+                .fecharPropaganda()
+                .alterarQuantidadeDoProduto()
+                .selecionarContinuarParaCarrinho()
+                .selecionarBotaoProcederParaCheckoutJaLogadoNaConta()
+                .selecionarBotaoPlaceOrder()
+                .preencherNomeCartao()
+                .preencherNumeroCartao()
+                .preencherCVC()
+                .preencherMesCartao()
+                .preencherAnoCartao()
+                .botaoConfirmar()
+                .selecionarBotaoDeletarConta()
+                .fecharPropaganda();
+
 
     }
 

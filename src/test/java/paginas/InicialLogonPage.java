@@ -27,4 +27,9 @@ public class InicialLogonPage {
         return new CartPage(browser);
     }
 
+    public ProductsPage selecionarBotaoParaPaginaProdutos() {
+        browser.findElement(By.cssSelector("a[href='/products']")).click();
+        return new ProductsPage(browser);
+    }
+
 }

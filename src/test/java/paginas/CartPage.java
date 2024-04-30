@@ -22,6 +22,11 @@ public class CartPage {
         return this;
     }
 
+    public CheckoutPage selecionarBotaoProcederParaCheckoutJaLogadoNaConta() {
+        browser.findElement(By.xpath("//a[text()='Proceed To Checkout']")).click();
+        return new CheckoutPage(browser);
+    }
+
     public CheckoutPage botaoCheckout(){
         browser.findElement(By.xpath("//a[text()='Proceed To Checkout']")).click();
         return new CheckoutPage(browser);

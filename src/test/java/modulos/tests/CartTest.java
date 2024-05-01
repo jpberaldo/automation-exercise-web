@@ -21,11 +21,9 @@ public class CartTest {
     @DisplayName("Executa toda vez antes de cada teste")
     public void beforeEach() {
         System.setProperty(CHROME_EXECUTAVEL, CAMINHO_CHROME_PATH);
-        this.browser = new ChromeDriver();
-        //acessar site abaixo
-        this.browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        this.browser.manage().window().maximize();
-        this.browser.get("https://automationexercise.com/login");
+        Utils util = new Utils();
+        this.browser = util.abrirNavegador(browser);
+
     }
 
     @Test

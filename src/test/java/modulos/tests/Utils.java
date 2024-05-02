@@ -7,12 +7,12 @@ import java.time.Duration;
 
 public class Utils {
 
-    public WebDriver abrirNavegador(WebDriver browser) {
+    public WebDriver abrirNavegador(WebDriver browser, String url) {
         browser = new ChromeDriver();
         //acessar site abaixo
         browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         browser.manage().window().maximize();
-        browser.get("https://automationexercise.com/login");
+        browser.get(url);
         return browser;
     }
 }

@@ -108,7 +108,7 @@ public class LoginTest {
     public void validarBotaoDeInscricaoPorEmail() {
 
         new HomePage(browser)
-                .rolarPaginaParaBaixo()
+                .rolarPaginaParaBaixo("8000")
                 .preencherCampoSubscriptionComEmail("email@testes.com");
 
         WebElement sucesso = browser.findElement(By.id("success-subscribe"));

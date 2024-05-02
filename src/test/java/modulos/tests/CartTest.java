@@ -22,7 +22,8 @@ public class CartTest {
     public void beforeEach() {
         System.setProperty(CHROME_EXECUTAVEL, CAMINHO_CHROME_PATH);
         Utils util = new Utils();
-        this.browser = util.abrirNavegador(browser);
+
+        this.browser = util.abrirNavegador(browser, "https://automationexercise.com/login");
 
     }
 

@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import paginas.HomePage;
+import service.ServiceTest;
 
 public class CategoryProductsTest {
 
@@ -16,7 +17,7 @@ public class CategoryProductsTest {
     @DisplayName("Executa toda vez antes de cada teste")
     public void beforeEach() {
         System.setProperty(CHROME_EXECUTAVEL, CAMINHO_CHROME_PATH);
-        Utils util = new Utils();
+        ServiceTest util = new ServiceTest();
         this.browser = util.abrirNavegador(browser, "https://automationexercise.com/");
 
     }

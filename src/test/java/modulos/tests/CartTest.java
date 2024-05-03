@@ -4,11 +4,10 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import paginas.HomePage;
 import paginas.LoginPage;
+import service.ServiceTest;
 
-import java.time.Duration;
 import java.util.List;
 
 public class CartTest {
@@ -21,7 +20,7 @@ public class CartTest {
     @DisplayName("Executa toda vez antes de cada teste")
     public void beforeEach() {
         System.setProperty(CHROME_EXECUTAVEL, CAMINHO_CHROME_PATH);
-        Utils util = new Utils();
+        ServiceTest util = new ServiceTest();
 
         this.browser = util.abrirNavegador(browser, "https://automationexercise.com/login");
 

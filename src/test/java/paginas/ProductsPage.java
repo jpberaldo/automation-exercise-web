@@ -43,6 +43,20 @@ public class ProductsPage implements fecharBotaoDePropaganda {
         return new ContinuarOuAdicionarProdutosPage(browser);
     }
 
+    public BrandPage selecionarBrand(int opcao) {
+
+        JavascriptExecutor jse = (JavascriptExecutor) browser;
+        jse.executeScript("window.scrollBy(0,500);");
+
+        if (opcao == 1) {
+            browser.findElement(By.cssSelector("a[href='/brand_products/Polo']")).click();
+
+        } else if (opcao == 2) {
+            browser.findElement(By.cssSelector("a[href='/brand_products/H&M']")).click();
+
+        }
+        return new BrandPage(browser);
+    }
 
     @Override
     public ProductsPage fecharPropaganda() throws InterruptedException {

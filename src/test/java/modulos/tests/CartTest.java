@@ -224,6 +224,32 @@ public class CartTest {
 
     }
 
+    @Test
+    @DisplayName("Test Case 20: Search Products and Verify Cart After Login")
+    public void procuraProdutosEVerificaCarrinhoDepoisDeLogar() throws InterruptedException {
+
+        new HomePage(browser)
+                .selecionarBotaoProducts()
+                .fecharPropaganda()
+                .pesquisarPorProduto("top")
+                .selecionarVariosProdutos(1)
+                .selecionarBotaoContinuarParaAdicionarMaisProdutos()
+                .adicionarProdutoAoCarrinho(5)
+                .selecionarContinuarParaCarrinho()
+                .selecionarBotaoParaPaginaDeSignupOuLogin()
+                .preencherCampoEmailLogin("teste9@email.com")
+                .preencherCampoSenhaLogin("senhanova123")
+                .selecionarBotaoLogarNaConta()
+                .selecionarBotaoParaCarrinho();
+
+        WebElement produto1 = browser.findElement(By.cssSelector("a[href='/product_details/1']"));
+        Assertions.assertEquals("Blue Top", produto1.getText());
+
+        WebElement produto2 = browser.findElement(By.cssSelector("a[href='/product_details/5']"));
+        Assertions.assertEquals("Winter Top", produto2.getText());
+
+    }
+
     @AfterEach
     @DisplayName("Executa toda vez, depois cada teste")
     public void afterEach() {

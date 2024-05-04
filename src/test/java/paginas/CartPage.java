@@ -42,4 +42,9 @@ public class CartPage {
         return this;
     }
 
+    public LoginPage selecionarBotaoParaPaginaDeSignupOuLogin() {
+        browser.findElement(By.linkText("Signup / Login")).click();
+        return new LoginPage(browser);
+    }
+
 }

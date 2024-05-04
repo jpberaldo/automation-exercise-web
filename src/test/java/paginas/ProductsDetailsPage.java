@@ -1,8 +1,10 @@
 package paginas;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.v85.debugger.Debugger;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -21,6 +23,26 @@ public class ProductsDetailsPage implements fecharBotaoDePropaganda {
         browser.findElement(By.cssSelector("input[type='number']")).clear();
         browser.findElement(By.cssSelector("input[type='number']")).sendKeys("1");
         browser.findElement(By.cssSelector("button[type='button']")).click();
+        return new ContinuarOuAdicionarProdutosPage(browser);
+    }
+
+    public ContinuarOuAdicionarProdutosPage selecionarVariosProdutos(int produtoNum) {
+
+        WebElement produtoSelecionado = browser.findElement(By.cssSelector("a[data-product-id='" + produtoNum + "']"));
+
+        try {
+            if (produtoSelecionado.isDisplayed()) {
+                produtoSelecionado.click();
+
+            } else if (!produtoSelecionado.isDisplayed()) {
+                JavascriptExecutor jse = (JavascriptExecutor) browser;
+                jse.executeScript("window.scrollBy(0,750);");
+                produtoSelecionado.click();
+
+            }
+        } catch (Exception e) {
+            System.out.println("Qual foi a excecao: " + e.getMessage());
+        }
         return new ContinuarOuAdicionarProdutosPage(browser);
     }
 

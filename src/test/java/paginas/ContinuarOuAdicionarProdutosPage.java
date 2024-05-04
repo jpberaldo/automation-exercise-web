@@ -20,4 +20,5 @@ public class ContinuarOuAdicionarProdutosPage {
         browser.findElement(By.linkText("View Cart")).click();
         return new CartPage(browser);
     }
+
 }

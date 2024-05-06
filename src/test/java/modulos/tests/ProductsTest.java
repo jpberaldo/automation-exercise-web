@@ -78,6 +78,21 @@ public class ProductsTest {
         }
     }
 
+    @Test
+    @DisplayName("Test Case 21: Add review on product")
+    public void adicionarUmaRevisaoSobreUmProduto() throws InterruptedException {
+
+        new HomePage(browser)
+                .selecionarBotaoProducts()
+                .fecharPropaganda()
+                .visualizarUmProduto()
+                .preencherCampoNomeRevisao("Testes")
+                .preencherCampoEmailRevisao("testes@gmail.com")
+                .preencherRevisaoDoProduto("Testessssss")
+                .selecionarBotaoEnviarRevisao();
+
+    }
+
     @AfterEach
     @DisplayName("Executa toda vez depois de cada teste")
     public void afterEach() {

@@ -15,7 +15,6 @@ public class ProductsPage implements fecharBotaoDePropaganda {
 
     }
 
-
     public ProductsDetailsPage selecionarProduto() {
         JavascriptExecutor jse = (JavascriptExecutor) browser;
         jse.executeScript("window.scrollBy(0,250);");
@@ -56,6 +55,37 @@ public class ProductsPage implements fecharBotaoDePropaganda {
 
         }
         return new BrandPage(browser);
+    }
+
+    public ProductsPage visualizarUmProduto() {
+
+        JavascriptExecutor jse = (JavascriptExecutor) browser;
+        jse.executeScript("window.scrollBy(0,500);");
+        browser.findElement(By.cssSelector("a[href='/product_details/1']")).click();
+
+        return this;
+    }
+
+    public ProductsPage preencherCampoNomeRevisao(String nome) {
+        browser.findElement(By.id("name")).sendKeys(nome);
+        return this;
+    }
+
+    public ProductsPage preencherCampoEmailRevisao(String email) {
+        browser.findElement(By.id("email")).sendKeys(email);
+        return this;
+    }
+
+    public ProductsPage preencherRevisaoDoProduto(String descricao) {
+        JavascriptExecutor jse = (JavascriptExecutor) browser;
+        jse.executeScript("window.scrollBy(0,500);");
+        browser.findElement(By.cssSelector("textarea[name='review']")).sendKeys();
+        return this;
+    }
+
+    public ProductsPage selecionarBotaoEnviarRevisao() {
+        browser.findElement(By.id("button-review"));
+        return this;
     }
 
     @Override

@@ -79,12 +79,12 @@ public class ProductsPage implements fecharBotaoDePropaganda {
     public ProductsPage preencherRevisaoDoProduto(String descricao) {
         JavascriptExecutor jse = (JavascriptExecutor) browser;
         jse.executeScript("window.scrollBy(0,500);");
-        browser.findElement(By.cssSelector("textarea[name='review']")).sendKeys();
+        browser.findElement(By.xpath("//textarea[@placeholder='Add Review Here!']")).sendKeys(descricao);
         return this;
     }
 
     public ProductsPage selecionarBotaoEnviarRevisao() {
-        browser.findElement(By.id("button-review"));
+        browser.findElement(By.className("btn-default"));
         return this;
     }
 

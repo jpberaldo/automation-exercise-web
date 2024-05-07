@@ -57,6 +57,13 @@ public class HomePage implements fecharBotaoDePropaganda {
         return this;
     }
 
+    public ContinuarOuAdicionarProdutosPage selecionarProduto() {
+
+        WebElement elemento = browser.findElements(By.cssSelector("a[data-product-id='2']")).get(2);
+        elemento.click();
+        return new ContinuarOuAdicionarProdutosPage(browser);
+    }
+
     @Override
     public HomePage fecharPropaganda() throws InterruptedException {
 

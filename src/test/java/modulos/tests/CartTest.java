@@ -250,6 +250,22 @@ public class CartTest {
 
     }
 
+    @Test
+    @DisplayName("Test Case 22: Add to cart from Recommended items")
+    public void adicionarItemDosRecomendadosParaOCarrinho() throws InterruptedException {
+
+        new LoginPage(browser)
+                .selecionarBotaoHome()
+                .fecharPropaganda()
+                .rolarPaginaParaBaixo("7500")
+                .selecionarProduto()
+                .selecionarContinuarParaCarrinho();
+
+        WebElement produto = browser.findElement(By.cssSelector("a[href='/product_details/2']"));
+        Assertions.assertEquals("Men Tshirt", produto.getText());
+
+    }
+
     @AfterEach
     @DisplayName("Executa toda vez, depois cada teste")
     public void afterEach() {

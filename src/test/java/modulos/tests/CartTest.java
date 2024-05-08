@@ -9,6 +9,7 @@ import paginas.LoginPage;
 import service.ServiceTest;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CartTest {
 
@@ -263,6 +264,48 @@ public class CartTest {
 
         WebElement produto = browser.findElement(By.cssSelector("a[href='/product_details/2']"));
         Assertions.assertEquals("Men Tshirt", produto.getText());
+
+    }
+
+    @Test
+    @DisplayName("Test Case 23: Verify address details in checkout page")
+    public void verificarEnderecoNaPaginaDeCheckout() throws InterruptedException {
+
+        new LoginPage(browser)
+                .preencherCampoNovoNomeParaCadastro("test0")
+                .preencherCampoEmailParaCadastro("test0@email.com")
+                .clicarNoBotaoCriarNovaConta()
+                .escolherTitulo(1)
+                .definirSenha("senhanova123")
+                .selecionarDiaMesAno(10, 5, 1) //Ano subentende-se que o valor 1
+                // seria o ano 2021 e vamos até 1900 ou seja o ultimo valor valido seria 121
+                .selecionarCheckboxUm()
+                .selecionarCheckboxDois()
+                .preencherCampoPrimeiroNome("teste0")
+                .preencherCampoUltimoNome("testando")
+                .preencherCampoEmpresa("Google")
+                .preencherCampoEndereco("Times Square")
+                .selecionarPais("United States")
+                .rolarPaginaParaBaixo()
+                .preencherCampoEstado("New York")
+                .preencherCampoCidade("New York")
+                .preencherCep("10036")
+                .preencherCelular("999999999")
+                .clicarNoBotaoCriarConta()
+                .clicarNoBotaoContinuar()
+                .selecionarBotaoParaPaginaProdutos()
+                .fecharPropaganda()
+                .selecionarProduto()
+                .alterarQuantidadeDoProduto()
+                .selecionarContinuarParaCarrinho()
+                .selecionarBotaoProcederParaCheckout();
+
+        List<WebElement> nome = browser.findElements(By.cssSelector("li[class='address_firstname address_lastname']"));
+        nome.stream().map(WebElement::getText).forEach(System.out::println);
+        String actual = nome.stream().map(WebElement::getText).collect(Collectors.joining(" | "));
+        String expected = "Mr. teste0 testando | Mr. teste0 testando";
+        Assertions.assertEquals(expected, actual);
+
 
     }
 

@@ -309,6 +309,36 @@ public class CartTest {
 
     }
 
+    @Test
+    @DisplayName("Test Case 24: Download Invoice after purchase order")
+    public void downloadInvoiceDepoisDeFazerUmaCompra() throws InterruptedException {
+
+        new LoginPage(browser)
+                .preencherCampoEmailLogin("teste9@email.com")
+                .preencherCampoSenhaLogin("senhanova123")
+                .selecionarBotaoLogarNaConta()
+                .selecionarBotaoParaPaginaProdutos()
+                .fecharPropaganda()
+                .selecionarProduto()
+                .alterarQuantidadeDoProduto()
+                .selecionarContinuarParaCarrinho()
+                .botaoCheckout()
+                .selecionarBotaoPlaceOrder()
+                .preencherNumeroCartao()
+                .preencherNomeCartao()
+                .preencherMesCartao()
+                .preencherAnoCartao()
+                .preencherCVC()
+                .botaoConfirmar()
+                .fazerDonwloadInvoice();
+
+        WebElement elemento = browser.findElement(By.xpath("//p[text()='Congratulations! Your order has been confirmed!']"));
+        String actual = elemento.getText();
+        String expected = "Congratulations! Your order has been confirmed!";
+        Assertions.assertEquals(expected, actual);
+
+    }
+
     @AfterEach
     @DisplayName("Executa toda vez, depois cada teste")
     public void afterEach() {

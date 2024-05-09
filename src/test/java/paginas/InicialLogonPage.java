@@ -32,4 +32,9 @@ public class InicialLogonPage {
         return new ProductsPage(browser);
     }
 
+    public InicialLogonPage fazerDonwloadInvoice() {
+        browser.findElement(By.linkText("Download Invoice")).click();
+        return this;
+    }
+
 }

@@ -64,6 +64,11 @@ public class HomePage implements fecharBotaoDePropaganda {
         return new ContinuarOuAdicionarProdutosPage(browser);
     }
 
+    public HomePage scrollUp() {
+        browser.findElement(By.id("scrollUp")).click();
+        return this;
+    }
+
     @Override
     public HomePage fecharPropaganda() throws InterruptedException {
 

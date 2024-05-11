@@ -1,9 +1,6 @@
 package modulos.tests;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -38,6 +35,27 @@ public class HomeTest {
         String expected = "Full-Fledged practice website for Automation Engineers";
         Assertions.assertEquals(expected, actual);
 
+    }
+
+    @Test
+    @DisplayName("Test Case 26: Verify Scroll Up without 'Arrow' button and Scroll Down functionality")
+    public void verificarScrollDownUtilizandoOBotaoSeta() {
+
+        new HomePage(browser)
+                .rolarPaginaParaBaixo("7500")
+                .rolarPaginaParaBaixo("-7500");
+
+        WebElement elemento = browser.findElement(By.xpath("//h2[text()='Full-Fledged practice website for Automation Engineers']"));
+        String actual = elemento.getText();
+        String expected = "Full-Fledged practice website for Automation Engineers";
+        Assertions.assertEquals(expected, actual);
+
+    }
+
+    @AfterEach
+    @DisplayName("Executa toda vez, depois cada teste")
+    public void afterEach() {
+        browser.close();
     }
 
 }

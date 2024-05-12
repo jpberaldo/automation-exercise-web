@@ -5,24 +5,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import paginas.LoginPage;
+import service.ServiceTest;
 
 public class CadastroTest {
 
     private WebDriver browser;
+    ServiceTest util = new ServiceTest();
 
     @BeforeEach
-    @DisplayName("Executa toda vez, antes de cada teste da classe.")
+    @DisplayName("Executa toda vez antes de cada teste")
     public void beforeEach() {
-        System.setProperty("webdriver.chrome.driver", "C:\\drivers\\chromedriver.exe");
-        this.browser = new ChromeDriver();
-        //acessar site abaixo
-        this.browser.get("https://automationexercise.com");
-        this.browser.manage().window().maximize();
-        browser.findElement(By.xpath("//a[text()=' Signup / Login']")).click();
-        //verificar se o site, é o correto
-        String url = browser.getTitle();
-        System.out.println(url);
-        Assertions.assertEquals("Automation Exercise - Signup / Login", url);
+        ServiceTest.configurarNavegador();
+        browser = util.abrirNavegador(browser, "https://automationexercise.com/");
 
     }
 
@@ -75,7 +69,7 @@ public class CadastroTest {
     @AfterEach
     @DisplayName("Executa toda vez, depois de cada teste que foi executado")
     public void afterEach() {
-        this.browser.close();
+        browser.quit();
     }
 
 }

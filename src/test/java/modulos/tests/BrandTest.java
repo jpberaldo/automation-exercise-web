@@ -9,16 +9,14 @@ import service.ServiceTest;
 
 public class BrandTest {
 
-    private final String CHROME_EXECUTAVEL = "webdriver.chrome.driver";
-    private final String CAMINHO_CHROME_PATH = "C:\\drivers\\chromedriver.exe";
     private WebDriver browser;
+    ServiceTest util = new ServiceTest();
 
     @BeforeEach
     @DisplayName("Executa toda vez antes de cada teste")
     public void beforeEach() {
-        System.setProperty(CHROME_EXECUTAVEL, CAMINHO_CHROME_PATH);
-        ServiceTest util = new ServiceTest();
-        this.browser = util.abrirNavegador(browser, "https://automationexercise.com/");
+        ServiceTest.configurarNavegador();
+        browser = util.abrirNavegador(browser, "https://automationexercise.com/");
 
     }
 
@@ -32,8 +30,8 @@ public class BrandTest {
                 .selecionarBrand(1)
                 .selecionarNovaBrand(2);
 
-        WebElement validaMsg = browser.findElement(By.cssSelector("h2[class='title text-center']"));
-        Assertions.assertEquals("Brand - H&M Products".toUpperCase(), validaMsg.getText());
+        WebElement actual = browser.findElement(By.cssSelector("h2[class='title text-center']"));
+        Assertions.assertEquals("Brand - H&M Products".toUpperCase(), actual.getText());
 
     }
 
@@ -41,6 +39,6 @@ public class BrandTest {
     @AfterEach
     @DisplayName("Executa toda vez depois de cada teste")
     public void afterEach() {
-        browser.close();
+        browser.quit();
     }
 }

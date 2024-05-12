@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import paginas.HomePage;
+import service.ServiceTest;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -13,21 +14,14 @@ import java.util.List;
 
 public class ProductsTest {
 
-    private final String CHROME_EXECUTAVEL = "webdriver.chrome.driver";
-    private final String CAMINHO_CHROME_PATH = "C:\\drivers\\chromedriver.exe";
     private WebDriver browser;
-
+    ServiceTest util = new ServiceTest();
 
     @BeforeEach
     @DisplayName("Executa toda vez antes de cada teste")
     public void beforeEach() {
-        System.setProperty(CHROME_EXECUTAVEL, CAMINHO_CHROME_PATH);
-        this.browser = new ChromeDriver();
-        //acessar site abaixo
-        this.browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        this.browser.manage().window().maximize();
-        this.browser.get("https://automationexercise.com");
-
+        ServiceTest.configurarNavegador();
+        browser = util.abrirNavegador(browser, "https://automationexercise.com");
 
     }
 
@@ -96,7 +90,7 @@ public class ProductsTest {
     @AfterEach
     @DisplayName("Executa toda vez depois de cada teste")
     public void afterEach() {
-        // browser.quit();
+        browser.quit();
     }
 
 }

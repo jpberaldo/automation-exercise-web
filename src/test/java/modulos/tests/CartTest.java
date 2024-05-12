@@ -13,17 +13,14 @@ import java.util.stream.Collectors;
 
 public class CartTest {
 
-    private final String CHROME_EXECUTAVEL = "webdriver.chrome.driver";
-    private final String CAMINHO_CHROME_PATH = "C:\\drivers\\chromedriver.exe";
     private WebDriver browser;
+    ServiceTest util = new ServiceTest();
 
     @BeforeEach
     @DisplayName("Executa toda vez antes de cada teste")
     public void beforeEach() {
-        System.setProperty(CHROME_EXECUTAVEL, CAMINHO_CHROME_PATH);
-        ServiceTest util = new ServiceTest();
-
-        this.browser = util.abrirNavegador(browser, "https://automationexercise.com/login");
+        ServiceTest.configurarNavegador();
+        browser = util.abrirNavegador(browser, "https://automationexercise.com/login");
 
     }
 
@@ -342,7 +339,7 @@ public class CartTest {
     @AfterEach
     @DisplayName("Executa toda vez, depois cada teste")
     public void afterEach() {
-        //browser.quit();
+        browser.quit();
     }
 
 }

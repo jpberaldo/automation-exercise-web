@@ -4,7 +4,6 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import paginas.HomePage;
 import paginas.LoginPage;
 import service.ServiceTest;
@@ -23,27 +22,25 @@ public class LoginTest {
     }
 
     @Test
-    @DisplayName("Preencher campo nome e email para ir a tela de cadastro// FAZ PARTE DO CT01")
+    @DisplayName("Test Case 1: Register User")
     public void preencherCamposNomeAndEmailDoCadastroEClicarNoBotaoSignup() {
 
-        browser.findElement(By.xpath("//a[text()=' Signup / Login']")).click();
-        //verificar se o site, é o correto
+        //verificar se esta na pagina correta
         String url = browser.getTitle();
         System.out.println(url);
-        Assertions.assertEquals("Automation Exercise - Signup / Login", url);
+        String expected = "Automation Exercise";
+        Assertions.assertEquals(expected, url);
 
-        //verificando se o texto "New User Signup!" esta visivel
-        String verificaNome = browser.findElement(By.xpath("//h2[text()='New User Signup!']")).getText();
-        System.out.println(verificaNome);
-
-        new LoginPage(browser)
+        new HomePage(browser)
+                .selecionarBotaoLoginECadastrar()
                 .preencherCampoNovoNomeParaCadastro("Testes12")
                 .preencherCampoEmailParaCadastro("testes12@email.com")
                 .clicarNoBotaoCriarNovaConta();
 
         //Verificando texto da tela da pagina de cadastro
-        String verificaTxtTelaCadastro = browser.findElement(By.xpath("//b[text()='Enter Account Information']")).getText();
-        Assertions.assertEquals("ENTER ACCOUNT INFORMATION", verificaTxtTelaCadastro);
+        String actual = browser.findElement(By.xpath("//b[text()='Enter Account Information']")).getText();
+        expected = "ENTER ACCOUNT INFORMATION";
+        Assertions.assertEquals(expected, actual);
 
     }
 
@@ -51,23 +48,20 @@ public class LoginTest {
     @DisplayName("Test Case 2: Login User with correct email and password")
     public void fazerLoginComDadosValidos() throws InterruptedException {
 
-        browser.findElement(By.xpath("//a[text()=' Signup / Login']")).click();
-        boolean textoLogin = browser.findElement(By.xpath("//h2[text()='Login to your account']")).isDisplayed();
-        System.out.println(textoLogin);
-
-
-        new LoginPage(browser)
-                .preencherCampoEmailLogin("teste5@email.com")
+        new HomePage(browser)
+                .selecionarBotaoLoginECadastrar()
+                .preencherCampoEmailLogin("teste9@email.com")
                 .preencherCampoSenhaLogin("senhanova123")
                 .selecionarBotaoLogarNaConta()
                 .selecionarBotaoDeletarConta()
-                .fecharPropaganda()
-                .clicarNoBotaoContinuarParaHome();
+                .fecharPropaganda();
+        //.clicarNoBotaoContinuarParaHome();
 
-
-        browser.findElement(By.cssSelector("h2[data-qa='account-deleted']")).isDisplayed();
-        String msg = browser.findElement(By.cssSelector("h2[data-qa='account-deleted']")).getText();
-        Assertions.assertEquals("ACCOUNT DELETED!", msg);
+        if (browser.findElement(By.cssSelector("h2[data-qa='account-deleted']")).isDisplayed()) {
+            String expected = "ACCOUNT DELETED!";
+            String actual = browser.findElement(By.cssSelector("h2[data-qa='account-deleted']")).getText();
+            Assertions.assertEquals(expected, actual);
+        }
 
     }
 

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import paginas.HomePage;
 import paginas.LoginPage;
 import service.ServiceTest;
 
@@ -24,9 +25,10 @@ public class CadastroTest {
     @DisplayName("Test Case 1: Register User")
     public void preencherPrimeiraParteDoCadastroDoUsuario() throws InterruptedException {
 
-        new LoginPage(browser)
-                .preencherCampoNovoNomeParaCadastro("teste5")
-                .preencherCampoEmailParaCadastro("teste5@email.com")
+        new HomePage(browser)
+                .selecionarBotaoLoginECadastrar()
+                .preencherCampoNovoNomeParaCadastro("teste9")
+                .preencherCampoEmailParaCadastro("teste9@email.com")
                 .clicarNoBotaoCriarNovaConta()
                 .escolherTitulo(1)
                 .definirSenha("senhanova123")

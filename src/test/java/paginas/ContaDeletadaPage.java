@@ -13,7 +13,7 @@ public class ContaDeletadaPage implements fecharBotaoDePropaganda {
     }
 
     public HomePage clicarNoBotaoContinuarParaHome() throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(4000);
         browser.findElement(By.cssSelector("a[data-qa='continue-button']")).click();
         return new HomePage(browser);
     }

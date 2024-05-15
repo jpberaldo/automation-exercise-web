@@ -69,6 +69,11 @@ public class HomePage implements fecharBotaoDePropaganda {
         return this;
     }
 
+    public LoginPage selecionarBotaoLoginECadastrar() {
+        browser.findElement(By.xpath("//a[text()=' Signup / Login']")).click();
+        return new LoginPage(browser);
+    }
+
     @Override
     public HomePage fecharPropaganda() throws InterruptedException {
 

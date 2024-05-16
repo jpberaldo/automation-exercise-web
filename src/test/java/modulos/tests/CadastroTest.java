@@ -27,8 +27,8 @@ public class CadastroTest {
 
         new HomePage(browser)
                 .selecionarBotaoLoginECadastrar()
-                .preencherCampoNovoNomeParaCadastro("teste9")
-                .preencherCampoEmailParaCadastro("teste9@email.com")
+                .preencherCampoNovoNomeParaCadastro("teste20")
+                .preencherCampoEmailParaCadastro("teste20@email.com")
                 .clicarNoBotaoCriarNovaConta()
                 .escolherTitulo(1)
                 .definirSenha("senhanova123")
@@ -36,7 +36,7 @@ public class CadastroTest {
                 // seria o ano 2021 e vamos até 1900 ou seja o ultimo valor valido seria 121
                 .selecionarCheckboxUm()
                 .selecionarCheckboxDois()
-                .preencherCampoPrimeiroNome("teste5")
+                .preencherCampoPrimeiroNome("teste20")
                 .preencherCampoUltimoNome("testando")
                 .preencherCampoEmpresa("Google")
                 .preencherCampoEndereco("Times Square")

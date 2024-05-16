@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import paginas.HomePage;
-import paginas.LoginPage;
 import service.ServiceTest;
 
 public class LoginTest {
@@ -69,16 +68,15 @@ public class LoginTest {
     @DisplayName("Test Case 3: Login User with incorrect email and password")
     public void fazerLoginComDadosInvalidos() {
 
-        browser.findElement(By.xpath("//a[text()=' Signup / Login']")).click();
-
-        new LoginPage(browser)
+        new HomePage(browser)
+                .selecionarBotaoLoginECadastrar()
                 .preencherCampoEmailLogin("testes@testes")
                 .preencherCampoSenhaLogin("111111")
                 .selecionarBotaoLogarNaConta();
 
-        String msgErro = browser.findElement(By.cssSelector("p[style='color: red;']")).getText();
-        Assertions.assertEquals("Your email or password is incorrect!", msgErro);
-        System.out.printf(msgErro);
+        String expected = "Your email or password is incorrect!";
+        String actual = browser.findElement(By.cssSelector("p[style='color: red;']")).getText();
+        Assertions.assertEquals(expected, actual);
 
     }
 
@@ -86,13 +84,16 @@ public class LoginTest {
     @DisplayName("Test Case 4: Logout User")
     public void sairDaContaLogada() {
 
-        browser.findElement(By.xpath("//a[text()=' Signup / Login']")).click();
-
-        new LoginPage(browser)
-                .preencherCampoEmailLogin("teste9@email.com")
+        new HomePage(browser)
+                .selecionarBotaoLoginECadastrar()
+                .preencherCampoEmailLogin("teste20@email.com")
                 .preencherCampoSenhaLogin("senhanova123")
                 .selecionarBotaoLogarNaConta()
                 .selecionarBotaoParaSairDaContaLogada();
+
+        String actual = browser.getCurrentUrl();
+        String expected = "https://automationexercise.com/login";
+        Assertions.assertEquals(expected, actual);
 
     }
 
@@ -102,14 +103,21 @@ public class LoginTest {
 
         new HomePage(browser)
                 .rolarPaginaParaBaixo("8000")
-                .preencherCampoSubscriptionComEmail("email@testes.com");
+                .preencherCampoSubscriptionComEmail("email@testes.com")
+                .selecionarBotaoSubscription();
 
-        WebElement sucesso = browser.findElement(By.id("success-subscribe"));
-        System.out.println(sucesso.isDisplayed() + " :::: " + sucesso.getText());
+        WebElement campoSubscription = browser.findElement(By.xpath("//h2[text()='Subscription']"));
+        if (campoSubscription.isDisplayed()) {
 
-        WebElement subscriptionTela = browser.findElement(By.xpath("//h2[text()='Subscription']"));
-        System.out.println(subscriptionTela.isDisplayed() + " :::: " + subscriptionTela.getText());
+            String validaCampoSubscription = campoSubscription.getText();
+            String expectedCampo = "SUBSCRIPTION";
+            Assertions.assertEquals(expectedCampo, validaCampoSubscription);
 
+            String actual = browser.findElement(By.id("success-subscribe")).getText();
+            String expected = "You have been successfully subscribed!";
+            Assertions.assertEquals(expected, actual);
+
+        }
 
     }
 

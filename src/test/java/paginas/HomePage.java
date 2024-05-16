@@ -38,6 +38,10 @@ public class HomePage implements fecharBotaoDePropaganda {
 
     public HomePage preencherCampoSubscriptionComEmail(String email) {
         browser.findElement(By.id("susbscribe_email")).sendKeys(email);
+        return this;
+    }
+
+    public HomePage selecionarBotaoSubscription() {
         browser.findElement(By.id("subscribe")).click();
         return this;
     }

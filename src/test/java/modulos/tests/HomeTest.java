@@ -26,7 +26,7 @@ public class HomeTest {
 
         new HomePage(browser)
                 .rolarPaginaParaBaixo("7500")
-                .scrollUp();
+                .selecionarBotaoScrollUp();
 
         WebElement elemento = browser.findElement(By.xpath("//h2[text()='Full-Fledged practice website for Automation Engineers']"));
         String actual = elemento.getText();

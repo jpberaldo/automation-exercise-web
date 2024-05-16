@@ -1,9 +1,7 @@
 package modulos.tests;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import paginas.HomePage;
@@ -38,9 +36,13 @@ public class ContactUsTest {
                 .preencherCampoDescricao(descricao)
                 .subirArquivo()
                 .clicarNoBotaoSubmit()
-                .clicarNoBotaoOk()
-                .retornarParaPaginaInicial()
-                .fecharPropaganda();
+                .clicarNoBotaoOk();
+//                .retornarParaPaginaInicial()
+//                .fecharPropaganda();
+
+        String actual = browser.findElement(By.xpath("//div[@class='status alert alert-success']")).getText();
+        String expected = "Success! Your details have been submitted successfully.";
+        Assertions.assertEquals(expected, actual);
     }
 
     @AfterEach

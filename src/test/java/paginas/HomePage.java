@@ -68,7 +68,7 @@ public class HomePage implements fecharBotaoDePropaganda {
         return new ContinuarOuAdicionarProdutosPage(browser);
     }
 
-    public HomePage scrollUp() {
+    public HomePage selecionarBotaoScrollUp() {
         browser.findElement(By.id("scrollUp")).click();
         return this;
     }

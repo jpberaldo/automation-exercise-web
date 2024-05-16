@@ -26,8 +26,9 @@ public class TestCaseTest {
         new HomePage(browser)
                 .selecionarBotaoTestCases();
 
-        String urlAtual = browser.getCurrentUrl();
-        Assertions.assertEquals("https://automationexercise.com/test_cases", urlAtual);
+        String actual = browser.getCurrentUrl();
+        String expected = "https://automationexercise.com/test_cases";
+        Assertions.assertEquals(expected, actual);
     }
 
     @AfterEach

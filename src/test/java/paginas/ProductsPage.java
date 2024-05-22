@@ -15,11 +15,11 @@ public class ProductsPage implements fecharBotaoDePropaganda {
 
     }
 
-    public ProductsDetailsPage selecionarProduto() {
+    public ProductsDetailsPage selecionarProduto(int numeroProduto) {
         JavascriptExecutor jse = (JavascriptExecutor) browser;
         jse.executeScript("window.scrollBy(0,250);");
-        browser.findElement(By.cssSelector("a[href='/product_details/1']")).isDisplayed();
-        browser.findElement(By.cssSelector("a[href='/product_details/1']")).click();
+        WebElement produto = browser.findElement(By.cssSelector("a[href='/product_details/1']"));
+        produto.click();
         return new ProductsDetailsPage(browser);
     }
 
@@ -96,8 +96,6 @@ public class ProductsPage implements fecharBotaoDePropaganda {
             try {
                 String iframeName = "aswift_" + i;
                 WebElement iframe = browser.findElement(By.id(iframeName));
-//                Wait<WebDriver> wait = new WebDriverWait(browser, Duration.ofSeconds(10));
-//                wait.until(b -> iframe.isDisplayed());
 
                 if (iframe.isDisplayed()) {
                     browser.switchTo().frame(iframe);

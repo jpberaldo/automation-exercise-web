@@ -32,26 +32,32 @@ public class ProductsTest {
         new HomePage(browser)
                 .selecionarBotaoProducts()
                 .fecharPropaganda()
-                .selecionarProduto()
-                .fecharPropaganda();
+                .selecionarProduto(1);
 
-        //Asserts, voltar para melhorar/corrigir depois
+        WebElement elementoNomeProduto = browser.findElement(By.xpath("//h2[text()='Blue Top']"));
+        String expected = "Blue Top";
+        Assertions.assertEquals(expected, elementoNomeProduto.getText());
 
-//        List<WebElement> nomeProduto = browser.findElements(By.tagName("h2"));
-//        String texto = nomeProduto.get(2).getText();
-//        String texto2 = nomeProduto.get(2).getAccessibleName();
-//        String texto3 = nomeProduto.get(2).toString();
-//        System.out.println(texto +"\n" + texto2 + "\n" + texto3);
-//        //Assertions.assertTrue(nomeProduto.isDisplayed());
-//
-//        String categoria = browser.findElement(By.xpath("//p[text()='Category: Women > Tops']")).getText();
-//        Assertions.assertEquals("Category: Women > Tops", categoria);
-//
-//        String preco = browser.findElement(By.xpath("//span[text()='Rs. 500']")).getText();
-//        Assertions.assertEquals("Rs. 500", preco);
-//
-//        String disponibilidade = browser.findElement(By.xpath("//p[text()=' In Stock']")).getText();
-//        Assertions.assertEquals(" In Stock", disponibilidade);
+        WebElement elementoCategoria = browser.findElement(By.xpath("//p[text()='Category: Women > Tops']"));
+        expected = "Category: Women > Tops";
+        Assertions.assertEquals(expected, elementoCategoria.getText());
+
+        WebElement elementoSpan = browser.findElement(By.xpath("//span[text()='Rs. 500']"));
+        expected = "Rs. 500";
+        Assertions.assertEquals(expected, elementoSpan.getText());
+
+        WebElement elementoEstoque = browser.findElement(By.xpath("//p[text()=' In Stock']"));
+        expected = "Availability: In Stock";
+        Assertions.assertEquals(expected, elementoEstoque.getText());
+
+        WebElement elementoCondicaoProduto = browser.findElement(By.xpath("//p[text()=' New']"));
+        expected = "Condition: New";
+        Assertions.assertEquals(expected, elementoCondicaoProduto.getText());
+
+        WebElement elementoMarca = browser.findElement(By.xpath("//p[text()=' Polo']"));
+        expected = "Brand: Polo";
+        Assertions.assertEquals(expected, elementoMarca.getText());
+
     }
 
     @Test
@@ -62,7 +68,6 @@ public class ProductsTest {
                 .selecionarBotaoProducts()
                 .fecharPropaganda()
                 .pesquisarPorProduto("men");
-//                .fecharPropaganda();
 
         WebElement lista = browser.findElement(By.cssSelector("div[class='col-sm-4']"));
         if (lista.isDisplayed()) {

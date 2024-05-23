@@ -4,12 +4,12 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import paginas.HomePage;
 import service.ServiceTest;
 
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductsTest {
@@ -69,11 +69,10 @@ public class ProductsTest {
                 .fecharPropaganda()
                 .pesquisarPorProduto("men");
 
-        WebElement lista = browser.findElement(By.cssSelector("div[class='col-sm-4']"));
-        if (lista.isDisplayed()) {
-            List<WebElement> listaElement = browser.findElements(By.cssSelector("div[class='col-sm-4']"));
-            listaElement.forEach(System.out::println);
-            System.out.println(listaElement.size());
+        WebElement produto = browser.findElement(By.cssSelector("div[class='col-sm-4']"));
+        if (produto.isDisplayed()) {
+            List<WebElement> listaDeProdutos = browser.findElements(By.cssSelector("div[class='col-sm-4']"));
+            listaDeProdutos.forEach(l -> System.out.println("Dados do produto encontrado [ " + l.getText() + " ]\n" + "**********"));
         }
     }
 
@@ -89,6 +88,13 @@ public class ProductsTest {
                 .preencherCampoEmailRevisao("testes@gmail.com")
                 .preencherRevisaoDoProduto("Testessssss")
                 .selecionarBotaoEnviarRevisao();
+
+        WebDriverWait wait = new WebDriverWait(browser, Duration.ofSeconds(5));
+        WebElement mensagemSucesso = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Thank you for your review.']")));
+
+        String actual = mensagemSucesso.getText();
+        String expected = "Thank you for your review.";
+        Assertions.assertEquals(expected, actual);
 
     }
 

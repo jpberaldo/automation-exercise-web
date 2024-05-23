@@ -84,7 +84,7 @@ public class ProductsPage implements fecharBotaoDePropaganda {
     }
 
     public ProductsPage selecionarBotaoEnviarRevisao() {
-        browser.findElement(By.className("btn-default"));
+        browser.findElement(By.id("button-review")).click();
         return this;
     }
 

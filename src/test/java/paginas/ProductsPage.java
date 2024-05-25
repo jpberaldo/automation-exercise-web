@@ -18,7 +18,7 @@ public class ProductsPage implements fecharBotaoDePropaganda {
     public ProductsDetailsPage selecionarProduto(int numeroProduto) {
         JavascriptExecutor jse = (JavascriptExecutor) browser;
         jse.executeScript("window.scrollBy(0,250);");
-        WebElement produto = browser.findElement(By.cssSelector("a[href='/product_details/1']"));
+        WebElement produto = browser.findElement(By.cssSelector("a[href='/product_details/" + numeroProduto + "']"));
         produto.click();
         return new ProductsDetailsPage(browser);
     }

@@ -32,7 +32,9 @@ public class CategoryProductsTest {
                 .fecharPropaganda();
 
         WebElement titulo = browser.findElement(By.cssSelector("h2[class='title text-center']"));
-        Assertions.assertEquals("women - dress products", titulo.getText().toLowerCase());
+        String actual = titulo.getText().toLowerCase();
+        String expected = "women - dress products";
+        Assertions.assertEquals(expected, actual);
 
     }
 

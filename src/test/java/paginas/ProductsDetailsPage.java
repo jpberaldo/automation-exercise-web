@@ -18,10 +18,9 @@ public class ProductsDetailsPage implements fecharBotaoDePropaganda {
         this.browser = browser;
     }
 
-    public ContinuarOuAdicionarProdutosPage alterarQuantidadeDoProduto() {
-        //browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    public ContinuarOuAdicionarProdutosPage alterarQuantidadeDoProduto(String qtdProduto) {
         browser.findElement(By.cssSelector("input[type='number']")).clear();
-        browser.findElement(By.cssSelector("input[type='number']")).sendKeys("1");
+        browser.findElement(By.cssSelector("input[type='number']")).sendKeys(qtdProduto);
         browser.findElement(By.cssSelector("button[type='button']")).click();
         return new ContinuarOuAdicionarProdutosPage(browser);
     }

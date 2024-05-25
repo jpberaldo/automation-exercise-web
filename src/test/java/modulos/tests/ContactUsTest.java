@@ -36,9 +36,8 @@ public class ContactUsTest {
                 .preencherCampoDescricao(descricao)
                 .subirArquivo()
                 .clicarNoBotaoSubmit()
-                .clicarNoBotaoOk();
-//                .retornarParaPaginaInicial()
-//                .fecharPropaganda();
+                .clicarNoBotaoOk()
+                .retornarParaPaginaInicial();
 
         String actual = browser.findElement(By.xpath("//div[@class='status alert alert-success']")).getText();
         String expected = "Success! Your details have been submitted successfully.";

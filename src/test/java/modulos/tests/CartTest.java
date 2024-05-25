@@ -32,11 +32,15 @@ public class CartTest {
                 .selecionarBotaoCart()
                 .preencherCampoSubscriptionComEmail("testes@email.com");
 
-        WebElement sucesso = browser.findElement(By.id("success-subscribe"));
-        System.out.println(sucesso.isDisplayed() + " :::: " + sucesso.getText());
+        WebElement campoSubscription = browser.findElement(By.xpath("//h2[text()='Subscription']"));
+        String actual = campoSubscription.getText();
+        String expected = "SUBSCRIPTION";
+        Assertions.assertEquals(expected, actual);
 
-        WebElement subscriptionTela = browser.findElement(By.xpath("//h2[text()='Subscription']"));
-        System.out.println(subscriptionTela.isDisplayed() + " :::: " + subscriptionTela.getText());
+        WebElement mensagemSucesso = browser.findElement(By.id("success-subscribe"));
+        actual = mensagemSucesso.getText();
+        expected = "You have been successfully subscribed!";
+        Assertions.assertEquals(expected, actual);
 
     }
 
@@ -53,19 +57,14 @@ public class CartTest {
                 .selecionarContinuarParaCarrinho();
 
         WebElement prod1 = browser.findElement(By.linkText("Blue Top"));
-        System.out.println(prod1.getText());
-
-        Assertions.assertEquals("Blue Top", prod1.getText());
+        String actual = prod1.getText();
+        String expected = "Blue Top";
+        Assertions.assertEquals(expected, actual);
 
         WebElement prod2 = browser.findElement(By.linkText("Men Tshirt"));
-        System.out.println(prod2.getText());
-
-        Assertions.assertEquals("Men Tshirt", prod2.getText());
-
-        List<WebElement> listaPreco = browser.findElements(By.cssSelector("td[class='cart_price']"));
-        System.out.println("Tamanho da lista: " + listaPreco.size());
-        System.out.println("\nExibindo precos dos produtos");
-        listaPreco.stream().filter(l -> l.isDisplayed()).forEach(System.out::println);
+        actual = prod2.getText();
+        expected = "Men Tshirt";
+        Assertions.assertEquals(expected, actual);
 
     }
 
@@ -78,13 +77,13 @@ public class CartTest {
                 .fecharPropaganda()
                 .selecionarProduto(1)
                 .fecharPropaganda()
-                .alterarQuantidadeDoProduto()
+                .alterarQuantidadeDoProduto("4")
                 .selecionarContinuarParaCarrinho();
 
         WebElement qtdAtualCarrinho = browser.findElement(By.cssSelector("button[class='disabled']"));
-        System.out.println(qtdAtualCarrinho.getText());
-
-        Assertions.assertEquals("4", qtdAtualCarrinho.getText());
+        String actual = qtdAtualCarrinho.getText();
+        String expected = "4";
+        Assertions.assertEquals(expected, actual);
 
     }
 
@@ -97,7 +96,7 @@ public class CartTest {
                 .fecharPropaganda()
                 .selecionarProduto(1)
                 .fecharPropaganda()
-                .alterarQuantidadeDoProduto()
+                .alterarQuantidadeDoProduto("1")
                 .selecionarContinuarParaCarrinho()
                 .selecionarBotaoProcederParaCheckout()
                 .selecionarBotaoRegistroOuLogin()
@@ -167,7 +166,7 @@ public class CartTest {
                 .fecharPropaganda()
                 .selecionarProduto(1)
                 .fecharPropaganda()
-                .alterarQuantidadeDoProduto()
+                .alterarQuantidadeDoProduto("1")
                 .selecionarContinuarParaCarrinho()
                 .selecionarBotaoProcederParaCheckoutJaLogadoNaConta()
                 .selecionarBotaoPlaceOrder()
@@ -195,7 +194,7 @@ public class CartTest {
                 .fecharPropaganda()
                 .selecionarProduto(1)
                 .fecharPropaganda()
-                .alterarQuantidadeDoProduto()
+                .alterarQuantidadeDoProduto("1")
                 .selecionarContinuarParaCarrinho()
                 .selecionarBotaoProcederParaCheckoutJaLogadoNaConta()
                 .selecionarBotaoPlaceOrder()
@@ -293,7 +292,7 @@ public class CartTest {
                 .selecionarBotaoParaPaginaProdutos()
                 .fecharPropaganda()
                 .selecionarProduto(1)
-                .alterarQuantidadeDoProduto()
+                .alterarQuantidadeDoProduto("1")
                 .selecionarContinuarParaCarrinho()
                 .selecionarBotaoProcederParaCheckout();
 
@@ -317,7 +316,7 @@ public class CartTest {
                 .selecionarBotaoParaPaginaProdutos()
                 .fecharPropaganda()
                 .selecionarProduto(1)
-                .alterarQuantidadeDoProduto()
+                .alterarQuantidadeDoProduto("1")
                 .selecionarContinuarParaCarrinho()
                 .botaoCheckout()
                 .selecionarBotaoPlaceOrder()

@@ -73,25 +73,36 @@ public class ContactUsPage implements fecharBotaoDePropaganda {
     @Override
     public HomePage fecharPropaganda() throws InterruptedException {
 
-        WebElement iframe1 = browser.findElement(By.cssSelector("iframe[id='aswift_1']"));
+        for (int i = 0; i < 7; i++) {
 
-        if (iframe1.isDisplayed()) {
-            Thread.sleep(1000);
-            browser.switchTo().frame("aswift_1");
-            Thread.sleep(1000);
-            browser.findElement(By.cssSelector("div[id='dismiss-button']")).click();
-            browser.switchTo().defaultContent();
+            try {
+                String iframeName = "aswift_" + i + "']";
+                WebElement iframe = browser.findElement(By.cssSelector("iframe[id='" + iframeName));
 
-        } else if (iframe1.isDisplayed()) {
-            Thread.sleep(1000);
-            browser.switchTo().frame("aswift_1");
-            Thread.sleep(1000);
-            browser.switchTo().frame("ad_iframe");
-            Thread.sleep(1000);
-            browser.findElement(By.cssSelector("div[id='dismiss-button']")).click();
-            browser.switchTo().defaultContent();
+                if (iframe.isDisplayed()) {
+                    browser.switchTo().frame(iframe);
+
+                    try {
+                        WebElement botaoFechar = browser.findElement(By.cssSelector("div[id='dismiss-button']"));
+                        botaoFechar.click();
+                    } catch (Exception e) {
+
+                        try {
+                            WebElement iframe2 = browser.findElement(By.cssSelector("iframe[id='ad_iframe']"));
+                            browser.switchTo().frame(iframe2);
+                            browser.findElement(By.id("dismiss-button")).click();
+                        } catch (Exception e2) {
+                            System.out.println("Elemento nao encontrado: " + e2.getMessage());
+                        }
+                    } finally {
+                        browser.switchTo().defaultContent();
+                    }
+                }
+
+            } catch (Exception e3) {
+                System.out.println("Excessao encontrada: " + e3.getMessage());
+            }
         }
-
         return new HomePage(browser);
     }
 }

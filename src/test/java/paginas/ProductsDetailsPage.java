@@ -48,35 +48,38 @@ public class ProductsDetailsPage implements fecharBotaoDePropaganda {
     @Override
     public ProductsDetailsPage fecharPropaganda() throws InterruptedException {
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 7; i++) {
 
             try {
                 String iframeName = "aswift_" + i + "']";
                 WebElement iframe = browser.findElement(By.cssSelector("iframe[id='" + iframeName));
 
-//                Wait<WebDriver> wait = new WebDriverWait(browser, Duration.ofSeconds(10));
-//                wait.until(b -> iframe.isDisplayed());
-
                 if (iframe.isDisplayed()) {
                     browser.switchTo().frame(iframe);
-                    browser.findElement(By.cssSelector("div[id='dismiss-button']")).click();
-                    browser.switchTo().defaultContent();
-                    break;
 
-                } else if (iframe.isDisplayed()) {
-                    browser.switchTo().frame(iframe);
-                    WebElement iframe2 = browser.findElement(By.cssSelector("iframe[id='ad_iframe']"));
-                    browser.switchTo().frame(iframe2);
-                    browser.findElement(By.cssSelector("div[id='dismiss-button']")).click();
-                    browser.switchTo().defaultContent();
-                    break;
+                    try {
+                        WebElement botaoFechar = browser.findElement(By.cssSelector("div[id='dismiss-button']"));
+                        botaoFechar.click();
+                    } catch (Exception e) {
+
+                        try {
+                            WebElement iframe2 = browser.findElement(By.cssSelector("iframe[id='ad_iframe']"));
+                            browser.switchTo().frame(iframe2);
+                            browser.findElement(By.id("dismiss-button")).click();
+                        } catch (Exception e2) {
+                            System.out.println("Elemento nao encontrado: " + e2.getMessage());
+                        }
+                    } finally {
+                        browser.switchTo().defaultContent();
+                    }
                 }
 
-            } catch (Exception e) {
-                System.out.println("Qual foi a excecao: " + e.getMessage());
+            } catch (Exception e3) {
+                System.out.println("Excessao encontrada: " + e3.getMessage());
             }
         }
-
         return this;
     }
+
+
 }

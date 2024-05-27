@@ -131,6 +131,16 @@ public class CartTest {
                 .preencherAnoCartao()
                 .botaoConfirmar();
 
+        WebElement usuarioLogado = browser.findElement(By.xpath("//a[text()=' Logged in as ']"));
+        String actual = usuarioLogado.getText();
+        String expected = "Logged in as test6";
+        Assertions.assertEquals(expected, actual);
+
+        WebElement pedidoRealizado = browser.findElement(By.xpath("//p[text()='Congratulations! Your order has been confirmed!']"));
+        actual = pedidoRealizado.getText();
+        expected = "Congratulations! Your order has been confirmed!";
+        Assertions.assertEquals(expected, actual);
+
     }
 
     @Test
@@ -337,7 +347,7 @@ public class CartTest {
     @AfterEach
     @DisplayName("Executa toda vez, depois cada teste")
     public void afterEach() {
-        //browser.quit();
+        browser.quit();
     }
 
 }

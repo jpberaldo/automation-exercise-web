@@ -76,7 +76,7 @@ public class CartTest {
                 .selecionarBotaoProducts()
                 .fecharPropaganda()
                 .selecionarProduto(1)
-                .fecharPropaganda()
+                //.fecharPropaganda()
                 .alterarQuantidadeDoProduto("4")
                 .selecionarContinuarParaCarrinho();
 
@@ -129,10 +129,7 @@ public class CartTest {
                 .preencherCVC()
                 .preencherMesCartao()
                 .preencherAnoCartao()
-                .botaoConfirmar()
-                .selecionarBotaoDeletarConta()
-                .fecharPropaganda()
-                .clicarNoBotaoContinuarParaHome();
+                .botaoConfirmar();
 
     }
 
@@ -259,7 +256,9 @@ public class CartTest {
                 .selecionarContinuarParaCarrinho();
 
         WebElement produto = browser.findElement(By.cssSelector("a[href='/product_details/2']"));
-        Assertions.assertEquals("Men Tshirt", produto.getText());
+        String actual = produto.getText();
+        String expected = "Men Tshirt";
+        Assertions.assertEquals(expected, actual);
 
     }
 
@@ -338,7 +337,7 @@ public class CartTest {
     @AfterEach
     @DisplayName("Executa toda vez, depois cada teste")
     public void afterEach() {
-        browser.quit();
+        //browser.quit();
     }
 
 }

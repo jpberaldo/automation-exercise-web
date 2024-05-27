@@ -30,8 +30,10 @@ public class BrandTest {
                 .selecionarBrand(1)
                 .selecionarNovaBrand(2);
 
-        WebElement actual = browser.findElement(By.cssSelector("h2[class='title text-center']"));
-        Assertions.assertEquals("Brand - H&M Products".toUpperCase(), actual.getText());
+        WebElement produto = browser.findElement(By.cssSelector("h2[class='title text-center']"));
+        String actual = produto.getText();
+        String expected = "Brand - H&M Products";
+        Assertions.assertEquals("Brand - H&M Products".toUpperCase(), actual);
 
     }
 

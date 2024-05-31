@@ -20,7 +20,7 @@ public class CartTest {
     @DisplayName("Executa toda vez antes de cada teste")
     public void beforeEach() {
         ServiceTest.configurarNavegador();
-        browser = util.abrirNavegador(browser, "https://automationexercise.com/login");
+        browser = util.abrirNavegador(browser, "https://automationexercise.com/");
 
     }
 
@@ -147,7 +147,8 @@ public class CartTest {
     @DisplayName("Test Case 15: Place Order: Register before Checkout")
     public void realizarCadastroAntesDeAdicionarParaOCarrinho() throws InterruptedException {
 
-        new LoginPage(browser)
+        new HomePage(browser)
+                .selecionarBotaoLoginECadastrar()
                 .preencherCampoNovoNomeParaCadastro("teste15")
                 .preencherCampoEmailParaCadastro("teste15@email.com")
                 .clicarNoBotaoCriarNovaConta()
@@ -169,6 +170,7 @@ public class CartTest {
                 .preencherCelular("999999999")
                 .clicarNoBotaoCriarConta()
                 .clicarNoBotaoContinuar()
+                .fecharPropaganda()
                 .selecionarBotaoParaPaginaProdutos()
                 .fecharPropaganda()
                 .selecionarProduto(1)
@@ -186,6 +188,10 @@ public class CartTest {
                 .selecionarBotaoDeletarConta()
                 .fecharPropaganda();
 
+        WebElement contaDeletadaMsg = browser.findElement(By.xpath("//b[text()='Account Deleted!']"));
+        String actual = contaDeletadaMsg.getText();
+        String expected = "Account Deleted!";
+        Assertions.assertEquals(expected.toUpperCase(), actual);
 
     }
 
@@ -193,8 +199,9 @@ public class CartTest {
     @DisplayName("Test Case 16: Place Order: Login before Checkout")
     public void logarNaContaAntesDeIrParaCarrinho() throws InterruptedException {
 
-        new LoginPage(browser)
-                .preencherCampoEmailLogin("teste9@email.com")
+        new HomePage(browser)
+                .selecionarBotaoLoginECadastrar()
+                .preencherCampoEmailLogin("teste20@email.com")
                 .preencherCampoSenhaLogin("senhanova123")
                 .selecionarBotaoLogarNaConta()
                 .selecionarBotaoParaPaginaProdutos()
@@ -211,6 +218,11 @@ public class CartTest {
                 .preencherMesCartao()
                 .preencherAnoCartao()
                 .botaoConfirmar();
+
+        WebElement pedidoRealizadoMsg = browser.findElement(By.xpath("//b[text()='Order Placed!']"));
+        String actual = pedidoRealizadoMsg.getText();
+        String expected = "Order Placed!";
+        Assertions.assertEquals(expected.toUpperCase(), actual);
     }
 
     @Test
@@ -224,7 +236,13 @@ public class CartTest {
                 .selecionarBotaoContinuarParaAdicionarMaisProdutos()
                 .adicionarProdutoAoCarrinho(2)
                 .selecionarContinuarParaCarrinho()
-                .removerProdutoDoCarrinho();
+                .removerProdutoDoCarrinho(1)
+                .removerProdutoDoCarrinho(2);
+
+        WebElement carrinhoVazioMsg = browser.findElement(By.xpath("//b[text()='Cart is empty!']"));
+        String actual = carrinhoVazioMsg.getText();
+        String expected = "Cart is empty!";
+        Assertions.assertEquals(expected, actual);
 
     }
 
@@ -258,9 +276,7 @@ public class CartTest {
     @DisplayName("Test Case 22: Add to cart from Recommended items")
     public void adicionarItemDosRecomendadosParaOCarrinho() throws InterruptedException {
 
-        new LoginPage(browser)
-                .selecionarBotaoHome()
-                .fecharPropaganda()
+        new HomePage(browser)
                 .rolarPaginaParaBaixo("7500")
                 .selecionarProduto()
                 .selecionarContinuarParaCarrinho();
@@ -276,7 +292,8 @@ public class CartTest {
     @DisplayName("Test Case 23: Verify address details in checkout page")
     public void verificarEnderecoNaPaginaDeCheckout() throws InterruptedException {
 
-        new LoginPage(browser)
+        new HomePage(browser)
+                .selecionarBotaoLoginECadastrar()
                 .preencherCampoNovoNomeParaCadastro("test0")
                 .preencherCampoEmailParaCadastro("test0@email.com")
                 .clicarNoBotaoCriarNovaConta()
@@ -311,14 +328,14 @@ public class CartTest {
         String expected = "Mr. teste0 testando | Mr. teste0 testando";
         Assertions.assertEquals(expected, actual);
 
-
     }
 
     @Test
     @DisplayName("Test Case 24: Download Invoice after purchase order")
     public void downloadInvoiceDepoisDeFazerUmaCompra() throws InterruptedException {
 
-        new LoginPage(browser)
+        new HomePage(browser)
+                .selecionarBotaoLoginECadastrar()
                 .preencherCampoEmailLogin("teste9@email.com")
                 .preencherCampoSenhaLogin("senhanova123")
                 .selecionarBotaoLogarNaConta()
@@ -347,7 +364,7 @@ public class CartTest {
     @AfterEach
     @DisplayName("Executa toda vez, depois cada teste")
     public void afterEach() {
-        browser.quit();
+        //browser.quit();
     }
 
 }

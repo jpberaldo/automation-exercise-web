@@ -37,8 +37,8 @@ public class CartPage {
         return new LoginPage(browser);
     }
 
-    public CartPage removerProdutoDoCarrinho() {
-        browser.findElement(By.cssSelector("a[data-product-id='1']")).click();
+    public CartPage removerProdutoDoCarrinho(int numProduto) {
+        browser.findElement(By.cssSelector("a[data-product-id='" + numProduto + "']")).click();
         return this;
     }
 

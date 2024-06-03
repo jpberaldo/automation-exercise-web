@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import paginas.HomePage;
-import paginas.LoginPage;
 import service.ServiceTest;
 
 import java.util.List;
@@ -230,6 +229,7 @@ public class CartTest {
     public void removerProdutoDoCarrinho() throws InterruptedException {
 
         new HomePage(browser)
+                .fecharPropaganda()
                 .selecionarBotaoProducts()
                 .fecharPropaganda()
                 .adicionarProdutoAoCarrinho(1)
@@ -239,8 +239,8 @@ public class CartTest {
                 .removerProdutoDoCarrinho(1)
                 .removerProdutoDoCarrinho(2);
 
-        WebElement carrinhoVazioMsg = browser.findElement(By.xpath("//b[text()='Cart is empty!']"));
-        String actual = carrinhoVazioMsg.getText();
+        WebElement carrinhoVazio = browser.findElement(By.xpath("//span[@id='empty_cart']/p/b"));
+        String actual = carrinhoVazio.getText();
         String expected = "Cart is empty!";
         Assertions.assertEquals(expected, actual);
 
@@ -364,7 +364,7 @@ public class CartTest {
     @AfterEach
     @DisplayName("Executa toda vez, depois cada teste")
     public void afterEach() {
-        //browser.quit();
+        browser.quit();
     }
 
 }

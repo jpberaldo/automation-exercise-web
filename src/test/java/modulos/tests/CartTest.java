@@ -274,7 +274,7 @@ public class CartTest {
 
     @Test
     @DisplayName("Test Case 22: Add to cart from Recommended items")
-    public void adicionarItemDosRecomendadosParaOCarrinho() throws InterruptedException {
+    public void adicionarItemDosRecomendadosParaOCarrinho() {
 
         new HomePage(browser)
                 .rolarPaginaParaBaixo("7500")

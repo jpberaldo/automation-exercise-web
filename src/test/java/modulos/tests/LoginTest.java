@@ -49,12 +49,11 @@ public class LoginTest {
 
         new HomePage(browser)
                 .selecionarBotaoLoginECadastrar()
-                .preencherCampoEmailLogin("teste9@email.com")
+                .preencherCampoEmailLogin("teste30@email.com")
                 .preencherCampoSenhaLogin("senhanova123")
                 .selecionarBotaoLogarNaConta()
                 .selecionarBotaoDeletarConta()
                 .fecharPropaganda();
-        //.clicarNoBotaoContinuarParaHome();
 
         if (browser.findElement(By.cssSelector("h2[data-qa='account-deleted']")).isDisplayed()) {
             String expected = "ACCOUNT DELETED!";

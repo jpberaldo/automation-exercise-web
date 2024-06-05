@@ -4,29 +4,61 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
+@SuppressWarnings({"UnusedReturnValue", "unused", "FieldMayBeFinal", "unchecked"})
 public class HomePage implements fecharBotaoDePropaganda {
 
     private WebDriver browser;
 
+    @FindBy(linkText = "Contact us")
+    private WebElement botaoContactUs;
+
+    @FindBy(linkText = "Test Cases")
+    private WebElement botaoTestCases;
+
+    @FindBy(css = "a[href='/products']")
+    private WebElement botaoProducts;
+
+    @FindBy(id = "susbscribe_email")
+    private WebElement campoEmailSubscription;
+
+    @FindBy(id = "subscribe")
+    private WebElement clicarBotaoSubscription;
+
+    @FindBy(css = "a[href='/view_cart']")
+    private WebElement selecionarBotaoCarrinho;
+
+    @FindBy(css = "a[href='#Women']")
+    private WebElement selecionarCategoriaWomen;
+
+    @FindBy(css = "a[href='/category_products/1']")
+    private WebElement selecionarVestido;
+
+    @FindBy(id = "scrollUp")
+    private WebElement selecionarBotaoFlechaParaCima;
+
+    @FindBy(xpath = "//a[text()=' Signup / Login']")
+    private WebElement selecionarBotaoLoginECadastrar;
+
     public HomePage(WebDriver browser) {
         this.browser = browser;
+        PageFactory.initElements(this.browser, this);
     }
 
     public ContactUsPage selecionarBotaoContactUs() {
-        browser.findElement(By.linkText("Contact us")).isDisplayed();
-        browser.findElement(By.linkText("Contact us")).click();
-
+        botaoContactUs.click();
         return new ContactUsPage(browser);
     }
 
     public TestCasePage selecionarBotaoTestCases() {
-        browser.findElement(By.linkText("Test Cases")).click();
+        botaoTestCases.click();
         return new TestCasePage(browser);
     }
 
     public ProductsPage selecionarBotaoProducts() {
-        browser.findElement(By.cssSelector("a[href='/products']")).click();
+        botaoProducts.click();
         return new ProductsPage(browser);
     }
 
@@ -37,46 +69,46 @@ public class HomePage implements fecharBotaoDePropaganda {
     }
 
     public HomePage preencherCampoSubscriptionComEmail(String email) {
-        browser.findElement(By.id("susbscribe_email")).sendKeys(email);
+        campoEmailSubscription.sendKeys(email);
         return this;
     }
 
     public HomePage selecionarBotaoSubscription() {
-        browser.findElement(By.id("subscribe")).click();
+        clicarBotaoSubscription.click();
         return this;
     }
 
     public CartPage selecionarBotaoCart() {
-        browser.findElement(By.cssSelector("a[href='/view_cart']")).click();
+        selecionarBotaoCarrinho.click();
         return new CartPage(browser);
     }
 
     public HomePage selecionarCategoriaWomen() {
-        browser.findElement(By.cssSelector("a[href='#Women']")).click();
+        selecionarCategoriaWomen.click();
         return this;
     }
 
     public HomePage selecionarOpcaoDress() {
-        browser.findElement(By.cssSelector("a[href='/category_products/1']")).click();
+        selecionarVestido.click();
         return this;
     }
 
     public ContinuarOuAdicionarProdutosPage selecionarProduto() {
-
         WebElement elemento = browser.findElements(By.cssSelector("a[data-product-id='2']")).get(2);
         elemento.click();
         return new ContinuarOuAdicionarProdutosPage(browser);
     }
 
     public HomePage selecionarBotaoScrollUp() {
-        browser.findElement(By.id("scrollUp")).click();
+        selecionarBotaoFlechaParaCima.click();
         return this;
     }
 
     public LoginPage selecionarBotaoLoginECadastrar() {
-        browser.findElement(By.xpath("//a[text()=' Signup / Login']")).click();
+        selecionarBotaoLoginECadastrar.click();
         return new LoginPage(browser);
     }
+
 
     @Override
     public HomePage fecharPropaganda() throws InterruptedException {

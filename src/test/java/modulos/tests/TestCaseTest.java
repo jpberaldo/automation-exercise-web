@@ -21,10 +21,11 @@ public class TestCaseTest {
 
     @Test
     @DisplayName("Test Case 7: Verify Test Cases Page")
-    public void acessarPaginaDeTestCase() {
+    public void acessarPaginaDeTestCase() throws InterruptedException {
 
         new HomePage(browser)
-                .selecionarBotaoTestCases();
+                .selecionarBotaoTestCases()
+                .fecharPropaganda();
 
         String actual = browser.getCurrentUrl();
         String expected = "https://automationexercise.com/test_cases";

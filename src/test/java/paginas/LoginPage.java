@@ -1,52 +1,77 @@
 package paginas;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
+@SuppressWarnings({"UnusedReturnValue", "unused", "FieldMayBeFinal"})
 public class LoginPage {
 
     private WebDriver browser;
 
+    @FindBy(css = "input[data-qa='signup-name']")
+    private WebElement campoNomeCadastro;
+
+    @FindBy(css = "input[data-qa='signup-email']")
+    private WebElement campoEmailCadastro;
+
+    @FindBy(css = "button[data-qa='signup-button']")
+    private WebElement botaoCriarNovaConta;
+
+    @FindBy(css = "input[data-qa='login-password']")
+    private WebElement campoSenhaLogin;
+
+    @FindBy(css = "input[data-qa='login-email']")
+    private WebElement campoEmailLogin;
+
+    @FindBy(css = "button[data-qa='login-button']")
+    private WebElement botaoLogarNaConta;
+
+    @FindBy(css = "a[href='/']")
+    private WebElement botaoPaginaInicial; //voltar para home
+
     public LoginPage(WebDriver browser) {
         this.browser = browser;
+        PageFactory.initElements(this.browser, this);
     }
 
     public LoginPage preencherCampoNovoNomeParaCadastro(String nomeCadastro) {
-        this.browser.findElement(By.cssSelector("input[data-qa='signup-name']")).click();
-        this.browser.findElement(By.cssSelector("input[data-qa='signup-name']")).sendKeys(nomeCadastro);
+        campoNomeCadastro.click();
+        campoNomeCadastro.sendKeys(nomeCadastro);
         return this;
     }
 
     public LoginPage preencherCampoEmailParaCadastro(String emailCadastro) {
-        this.browser.findElement(By.cssSelector("input[data-qa='signup-email']")).click();
-        this.browser.findElement(By.cssSelector("input[data-qa='signup-email']")).sendKeys(emailCadastro);
+        campoEmailCadastro.click();
+        campoEmailCadastro.sendKeys(emailCadastro);
         return this;
     }
 
     public CadastroPage clicarNoBotaoCriarNovaConta() {
-        this.browser.findElement(By.cssSelector("button[data-qa='signup-button']")).click();
+        botaoCriarNovaConta.click();
         return new CadastroPage(browser);
     }
 
     public LoginPage preencherCampoSenhaLogin(String senhaLogin) {
-        this.browser.findElement(By.cssSelector("input[data-qa='login-password']")).click();
-        this.browser.findElement(By.cssSelector("input[data-qa='login-password']")).sendKeys(senhaLogin);
+        campoSenhaLogin.click();
+        campoSenhaLogin.sendKeys(senhaLogin);
         return this;
     }
 
     public LoginPage preencherCampoEmailLogin(String emailLogin) {
-        this.browser.findElement(By.cssSelector("input[data-qa='login-email']")).click();
-        this.browser.findElement(By.cssSelector("input[data-qa='login-email']")).sendKeys(emailLogin);
+        campoEmailLogin.click();
+        campoEmailLogin.sendKeys(emailLogin);
         return this;
     }
 
     public InicialLogonPage selecionarBotaoLogarNaConta() {
-        this.browser.findElement(By.cssSelector("button[data-qa='login-button']")).click();
+        botaoLogarNaConta.click();
         return new InicialLogonPage(browser);
     }
 
     public HomePage selecionarBotaoHome() {
-        browser.findElement(By.cssSelector("a[href='/']")).click();
+        botaoPaginaInicial.click();
         return new HomePage(browser);
     }
 

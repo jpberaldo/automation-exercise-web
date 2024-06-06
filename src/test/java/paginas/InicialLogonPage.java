@@ -3,38 +3,57 @@ package paginas;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
+@SuppressWarnings({"UnusedReturnValue", "unused", "FieldMayBeFinal", "unchecked"})
 public class InicialLogonPage implements fecharBotaoDePropaganda {
 
     private WebDriver browser;
 
+    @FindBy(xpath = "//a[text()=' Delete Account']")
+    private WebElement botaoDeletarConta;
+
+    @FindBy(linkText = "Logout")
+    private WebElement botaoDeslogarDaConta;
+
+    @FindBy(linkText = "Cart")
+    private WebElement botaoCarrinho;
+
+    @FindBy(css = "a[href='/products']")
+    private WebElement botaoProdutos;
+
+    @FindBy(linkText = "Download Invoice")
+    private WebElement botaoDownloadInvoice;
+
+
     public InicialLogonPage(WebDriver browser) {
         this.browser = browser;
+        PageFactory.initElements(this.browser, this);
     }
 
-    public ContaDeletadaPage selecionarBotaoDeletarConta() throws InterruptedException {
-        Thread.sleep(3000);
-        browser.findElement(By.xpath("//a[text()=' Delete Account']")).click();
+    public ContaDeletadaPage selecionarBotaoDeletarConta() {
+        botaoDeletarConta.click();
         return new ContaDeletadaPage(browser);
     }
 
     public LoginPage selecionarBotaoParaSairDaContaLogada() {
-        browser.findElement(By.linkText("Logout")).click();
+        botaoDeslogarDaConta.click();
         return new LoginPage(browser);
     }
 
     public CartPage selecionarBotaoParaCarrinho() {
-        browser.findElement(By.linkText("Cart")).click();
+        botaoCarrinho.click();
         return new CartPage(browser);
     }
 
     public ProductsPage selecionarBotaoParaPaginaProdutos() {
-        browser.findElement(By.cssSelector("a[href='/products']")).click();
+        botaoProdutos.click();
         return new ProductsPage(browser);
     }
 
     public InicialLogonPage fazerDonwloadInvoice() {
-        browser.findElement(By.linkText("Download Invoice")).click();
+        botaoDownloadInvoice.click();
         return this;
     }
 

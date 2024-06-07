@@ -1,43 +1,65 @@
 package paginas;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
+@SuppressWarnings({"UnusedReturnValue", "unused", "FieldMayBeFinal"})
 public class PaymentPage {
 
     private WebDriver browser;
 
+    @FindBy(css = "input[data-qa='name-on-card']")
+    private WebElement campoNomeCartao;
+
+    @FindBy(css = "input[data-qa='card-number']")
+    private WebElement campoNumeroDoCartao;
+
+    @FindBy(css = "input[data-qa='cvc']")
+    private WebElement campoCvcCartao;
+
+    @FindBy(css = "input[data-qa='expiry-month']")
+    private WebElement campoMesValidadeDoCartao;
+
+    @FindBy(css = "input[data-qa='expiry-year']")
+    private WebElement campoAnoDeValidadeCartao;
+
+    @FindBy(id = "submit")
+    private WebElement botaoConfirmar;
+
     public PaymentPage(WebDriver browser) {
         this.browser = browser;
+        PageFactory.initElements(this.browser, this);
     }
 
     public PaymentPage preencherNomeCartao() {
-        browser.findElement(By.cssSelector("input[data-qa='name-on-card']")).sendKeys("TESTESSSSSS");
+        campoNomeCartao.sendKeys("TESTESSSSSS");
         return this;
     }
 
     public PaymentPage preencherNumeroCartao() {
-        browser.findElement(By.cssSelector("input[data-qa='card-number']")).sendKeys("1111222233334444");
+        campoNumeroDoCartao.sendKeys("1111222233334444");
         return this;
     }
 
     public PaymentPage preencherCVC() {
-        browser.findElement(By.cssSelector("input[data-qa='cvc']")).sendKeys("123");
+        campoCvcCartao.sendKeys("123");
         return this;
     }
 
     public PaymentPage preencherMesCartao() {
-        browser.findElement(By.cssSelector("input[data-qa='expiry-month']")).sendKeys("01");
+        campoMesValidadeDoCartao.sendKeys("01");
         return this;
     }
 
     public PaymentPage preencherAnoCartao() {
-        browser.findElement(By.cssSelector("input[data-qa='expiry-year']")).sendKeys("2030");
+        campoAnoDeValidadeCartao.sendKeys("2030");
         return this;
     }
 
-    public InicialLogonPage botaoConfirmar() {
-        browser.findElement(By.id("submit")).click();
+    public InicialLogonPage selecionarBotaoConfirmar() {
+        botaoConfirmar.click();
         return new InicialLogonPage(browser);
     }
 }

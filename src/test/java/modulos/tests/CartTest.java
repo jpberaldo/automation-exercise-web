@@ -128,7 +128,7 @@ public class CartTest {
                 .preencherCVC()
                 .preencherMesCartao()
                 .preencherAnoCartao()
-                .botaoConfirmar();
+                .selecionarBotaoConfirmar();
 
         WebElement usuarioLogado = browser.findElement(By.xpath("//a[text()=' Logged in as ']"));
         String actual = usuarioLogado.getText();
@@ -183,7 +183,7 @@ public class CartTest {
                 .preencherCVC()
                 .preencherMesCartao()
                 .preencherAnoCartao()
-                .botaoConfirmar()
+                .selecionarBotaoConfirmar()
                 .selecionarBotaoDeletarConta()
                 .fecharPropaganda();
 
@@ -216,7 +216,7 @@ public class CartTest {
                 .preencherCVC()
                 .preencherMesCartao()
                 .preencherAnoCartao()
-                .botaoConfirmar();
+                .selecionarBotaoConfirmar();
 
         WebElement pedidoRealizadoMsg = browser.findElement(By.xpath("//b[text()='Order Placed!']"));
         String actual = pedidoRealizadoMsg.getText();
@@ -351,7 +351,7 @@ public class CartTest {
                 .preencherMesCartao()
                 .preencherAnoCartao()
                 .preencherCVC()
-                .botaoConfirmar()
+                .selecionarBotaoConfirmar()
                 .fazerDonwloadInvoice();
 
         WebElement elemento = browser.findElement(By.xpath("//p[text()='Congratulations! Your order has been confirmed!']"));

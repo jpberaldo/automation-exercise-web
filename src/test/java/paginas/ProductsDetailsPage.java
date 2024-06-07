@@ -4,24 +4,29 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.devtools.v85.debugger.Debugger;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
-import java.time.Duration;
-
+@SuppressWarnings({"UnusedReturnValue", "unused", "FieldMayBeFinal", "unchecked"})
 public class ProductsDetailsPage implements fecharBotaoDePropaganda {
 
     private WebDriver browser;
 
+    @FindBy(css = "input[type='number']")
+    private WebElement campoQuantidadeDoProduto;
+
+    @FindBy(css = "button[type='button']")
+    private WebElement botaoAdicionarProduto;
+
     public ProductsDetailsPage(WebDriver browser) {
         this.browser = browser;
+        PageFactory.initElements(this.browser, this);
     }
 
     public ContinuarOuAdicionarProdutosPage alterarQuantidadeDoProduto(String qtdProduto) {
-        browser.findElement(By.cssSelector("input[type='number']")).clear();
-        browser.findElement(By.cssSelector("input[type='number']")).sendKeys(qtdProduto);
-        browser.findElement(By.cssSelector("button[type='button']")).click();
+        campoQuantidadeDoProduto.clear();
+        campoQuantidadeDoProduto.sendKeys(qtdProduto);
+        botaoAdicionarProduto.click();
         return new ContinuarOuAdicionarProdutosPage(browser);
     }
 

@@ -84,6 +84,7 @@ public class ProductsTest {
                 .selecionarBotaoProducts()
                 .fecharPropaganda()
                 .visualizarUmProduto()
+                .fecharPropaganda()
                 .preencherCampoNomeRevisao("Testes")
                 .preencherCampoEmailRevisao("testes@gmail.com")
                 .preencherRevisaoDoProduto("Testessssss")

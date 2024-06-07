@@ -5,14 +5,36 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
+@SuppressWarnings({"UnusedReturnValue", "unused", "FieldMayBeFinal", "unchecked"})
 public class ProductsPage implements fecharBotaoDePropaganda {
 
     private WebDriver browser;
 
+    @FindBy(id = "search_product")
+    private WebElement campoPesquisarProduto;
+
+    @FindBy(id = "submit_search")
+    private WebElement botaoPesquisarProduto;
+
+    @FindBy(id = "name")
+    private WebElement campoNomeNoFormularioDeRevisao;
+
+    @FindBy(id = "email")
+    private WebElement campoEmailNoFormularioDeRevisao;
+
+    @FindBy(xpath = "//textarea[@placeholder='Add Review Here!']")
+    private WebElement campoRevisao;
+
+    @FindBy(id = "button-review")
+    private WebElement botaoEnviarRevisao;
+
+
     public ProductsPage(WebDriver browser) {
         this.browser = browser;
-
+        PageFactory.initElements(this.browser, this);
     }
 
     public ProductsDetailsPage selecionarProduto(int numeroProduto) {
@@ -23,9 +45,10 @@ public class ProductsPage implements fecharBotaoDePropaganda {
         return new ProductsDetailsPage(browser);
     }
 
+
     public ProductsDetailsPage pesquisarPorProduto(String produto) {
-        browser.findElement(By.id("search_product")).sendKeys(produto);
-        browser.findElement(By.id("submit_search")).click();
+        campoPesquisarProduto.sendKeys(produto);
+        botaoPesquisarProduto.click();
         return new ProductsDetailsPage(browser);
     }
 
@@ -67,24 +90,24 @@ public class ProductsPage implements fecharBotaoDePropaganda {
     }
 
     public ProductsPage preencherCampoNomeRevisao(String nome) {
-        browser.findElement(By.id("name")).sendKeys(nome);
+        campoNomeNoFormularioDeRevisao.sendKeys(nome);
         return this;
     }
 
     public ProductsPage preencherCampoEmailRevisao(String email) {
-        browser.findElement(By.id("email")).sendKeys(email);
+        campoEmailNoFormularioDeRevisao.sendKeys(email);
         return this;
     }
 
     public ProductsPage preencherRevisaoDoProduto(String descricao) {
         JavascriptExecutor jse = (JavascriptExecutor) browser;
         jse.executeScript("window.scrollBy(0,500);");
-        browser.findElement(By.xpath("//textarea[@placeholder='Add Review Here!']")).sendKeys(descricao);
+        campoRevisao.sendKeys(descricao);
         return this;
     }
 
     public ProductsPage selecionarBotaoEnviarRevisao() {
-        browser.findElement(By.id("button-review")).click();
+        botaoEnviarRevisao.click();
         return this;
     }
 

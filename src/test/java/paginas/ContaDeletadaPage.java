@@ -3,18 +3,24 @@ package paginas;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
+@SuppressWarnings({"UnusedReturnValue", "unused", "FieldMayBeFinal", "unchecked"})
 public class ContaDeletadaPage implements fecharBotaoDePropaganda {
 
     private WebDriver browser;
 
+    @FindBy(css = "a[data-qa='continue-button']")
+    private WebElement botaoContinuarParaPaginaInicial;
+
     public ContaDeletadaPage(WebDriver browser) {
         this.browser = browser;
+        PageFactory.initElements(this.browser, this);
     }
 
-    public HomePage clicarNoBotaoContinuarParaHome() throws InterruptedException {
-        Thread.sleep(4000);
-        browser.findElement(By.cssSelector("a[data-qa='continue-button']")).click();
+    public HomePage clicarNoBotaoContinuarParaHome() {
+        botaoContinuarParaPaginaInicial.click();
         return new HomePage(browser);
     }
 

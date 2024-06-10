@@ -4,16 +4,43 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.io.File;
 import java.util.List;
 
+@SuppressWarnings({"UnusedReturnValue", "unused", "FieldMayBeFinal, unchecked", "TooBroadScope"})
 public class ContactUsPage implements fecharBotaoDePropaganda {
 
     private WebDriver browser;
 
+    private static final String IMG_TESTE = "C:\\Users\\Joao\\Pictures\\teste.png";
+
+    @FindBy(name = "name")
+    private WebElement campoNome;
+
+    @FindBy(name = "email")
+    private WebElement campoEmail;
+
+    @FindBy(name = "subject")
+    private WebElement campoAssunto;
+
+    @FindBy(id = "message")
+    private WebElement campoDescricao;
+
+    @FindBy(css = "input[type=file]")
+    private WebElement botaoSelecionarArquivo;
+
+    @FindBy(css = "input[data-qa=submit-button]")
+    private WebElement botaoSubmit;
+
+    @FindBy(xpath = "//span[text()=' Home']")
+    private WebElement botaoVoltarParaPaginaInicial;
+
     public ContactUsPage(WebDriver browser) {
         this.browser = browser;
+        PageFactory.initElements(this.browser, this);
     }
 
     public ContactUsPage capturarTituloDoFormulario() {
@@ -25,37 +52,37 @@ public class ContactUsPage implements fecharBotaoDePropaganda {
     }
 
     public ContactUsPage preencherCampoNome(String nome) {
-        browser.findElement(By.name("name")).sendKeys(nome);
+        campoNome.sendKeys(nome);
         return this;
     }
 
     public ContactUsPage preencherCampoEmail(String email) {
-        browser.findElement(By.name("email")).sendKeys(email);
+        campoEmail.sendKeys(email);
         return this;
 
     }
 
     public ContactUsPage preencherCampoAssunto(String assuntoContato) {
-        browser.findElement(By.name("subject")).sendKeys(assuntoContato);
+        campoAssunto.sendKeys(assuntoContato);
         return this;
 
     }
 
     public ContactUsPage preencherCampoDescricao(String descricao) {
-        browser.findElement(By.id("message")).sendKeys(descricao);
+        campoDescricao.sendKeys(descricao);
         return this;
 
     }
 
     public ContactUsPage subirArquivo() {
-        File subirArquivo = new File("C:\\Users\\Joao\\Pictures\\teste.png");
-        WebElement arquivo = browser.findElement(By.cssSelector("input[type=file]"));
+        File subirArquivo = new File(IMG_TESTE);
+        WebElement arquivo = botaoSelecionarArquivo;
         arquivo.sendKeys(subirArquivo.getAbsolutePath());
         return this;
     }
 
     public ContactUsPage clicarNoBotaoSubmit() {
-        browser.findElement(By.cssSelector("input[data-qa=submit-button]")).click();
+        botaoSubmit.click();
         return this;
     }
 
@@ -66,7 +93,7 @@ public class ContactUsPage implements fecharBotaoDePropaganda {
     }
 
     public ContactUsPage retornarParaPaginaInicial() {
-        browser.findElement(By.xpath("//span[text()=' Home']")).click();
+        botaoVoltarParaPaginaInicial.click();
         return this;
     }
 

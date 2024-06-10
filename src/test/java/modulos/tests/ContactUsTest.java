@@ -3,7 +3,6 @@ package modulos.tests;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import paginas.HomePage;
 import service.ServiceTest;
 
@@ -22,7 +21,7 @@ public class ContactUsTest {
 
     @Test
     @DisplayName("Test Case 6: Contact Us Form")
-    public void preencherFormularioNaPaginaDeContato() throws InterruptedException {
+    public void preencherFormularioNaPaginaDeContato() {
 
         String descricao = "Lorem ipsum dolor sit amet. Ut praesentium fuga est dicta commodi ut reprehenderit velit quo error odio ut nobis commodi sed adipisci consectetur cum quia corrupti? Sit voluptatem excepturi ut iusto impedit et mollitia eligendi vel assumenda magnam. Et minus nihil ex veritatis dolores a iure cupiditate id aperiam dicta in minima voluptatem qui natus pariatur rem debitis velit. Id exercitationem nemo a possimus vero sit neque galisum non neque iste a omnis molestias quo unde voluptate.\n" +
                 "\n";

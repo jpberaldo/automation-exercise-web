@@ -2,38 +2,59 @@ package paginas;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
+
+@SuppressWarnings({"UnusedReturnValue", "unused", "FieldMayBeFinal"})
 public class CartPage {
 
     private WebDriver browser;
 
+    @FindBy(id = "susbscribe_email")
+    private WebElement campoEmailDeSubscribe;
+
+    @FindBy(id = "subscribe")
+    private WebElement botaoSubscribe;
+
+    @FindBy(xpath = "//a[text()='Proceed To Checkout']")
+    private WebElement botaoProcederParaCheckout;
+
+    @FindBy(linkText = "Register / Login")
+    private WebElement botaoRegistroOuLogin;
+
+    @FindBy(linkText = "Signup / Login")
+    private WebElement botaoSignupOuLogin;
+
     public CartPage(WebDriver browser) {
         this.browser = browser;
+        PageFactory.initElements(this.browser, this);
     }
 
     public CartPage preencherCampoSubscriptionComEmail(String email) {
-        browser.findElement(By.id("susbscribe_email")).sendKeys(email);
-        browser.findElement(By.id("subscribe")).click();
+        campoEmailDeSubscribe.sendKeys(email);
+        botaoSubscribe.click();
         return this;
     }
 
     public CartPage selecionarBotaoProcederParaCheckout() {
-        browser.findElement(By.xpath("//a[text()='Proceed To Checkout']")).click();
+        botaoProcederParaCheckout.click();
         return this;
     }
 
     public CheckoutPage selecionarBotaoProcederParaCheckoutJaLogadoNaConta() {
-        browser.findElement(By.xpath("//a[text()='Proceed To Checkout']")).click();
+        botaoProcederParaCheckout.click();
         return new CheckoutPage(browser);
     }
 
     public CheckoutPage botaoCheckout() {
-        browser.findElement(By.xpath("//a[text()='Proceed To Checkout']")).click();
+        botaoProcederParaCheckout.click();
         return new CheckoutPage(browser);
     }
 
     public LoginPage selecionarBotaoRegistroOuLogin() {
-        browser.findElement(By.linkText("Register / Login")).click();
+        botaoRegistroOuLogin.click();
         return new LoginPage(browser);
     }
 
@@ -43,7 +64,7 @@ public class CartPage {
     }
 
     public LoginPage selecionarBotaoParaPaginaDeSignupOuLogin() {
-        browser.findElement(By.linkText("Signup / Login")).click();
+        botaoSignupOuLogin.click();
         return new LoginPage(browser);
     }
 

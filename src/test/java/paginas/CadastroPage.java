@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import service.ServiceTest;
 
 @SuppressWarnings({"UnusedReturnValue", "unused", "FieldMayBeFinal"})
 public class CadastroPage {
@@ -52,6 +53,8 @@ public class CadastroPage {
     @FindBy(css = "button[data-qa='create-account']")
     private WebElement botaoCriarConta;
 
+    private ServiceTest service = new ServiceTest();
+
 
     public CadastroPage(WebDriver browser) {
         this.browser = browser;
@@ -74,32 +77,8 @@ public class CadastroPage {
         return this;
     }
 
-    public CadastroPage selecionarDiaMesAno(int dia, int mes, int ano) {
-
-        WebElement elementDia = browser.findElement(By.id("days"));
-        Select selectDia = new Select(elementDia);
-        if (dia >= 1 && dia <= 31) {
-            selectDia.selectByIndex(dia);
-        } else {
-            throw new IllegalArgumentException("Você deve selecionar um dia entre 1 e 31");
-        }
-
-        WebElement elementMes = browser.findElement(By.name("months"));
-        Select selectMes = new Select(elementMes);
-        if (mes >= 1 && mes <= 12) {
-            selectMes.selectByIndex(5);
-        } else {
-            throw new IllegalArgumentException("Você deve selecionar um mes entre 1 e 12");
-        }
-
-        WebElement elementAno = browser.findElement(By.id("years"));
-        Select selectAno = new Select(elementAno);
-        if (ano >= 0 && ano <= 121) {
-            selectAno.selectByIndex(ano);
-        } else {
-            throw new IllegalArgumentException("Você deve selecionar um ano entre 1900 e 2021");
-        }
-
+    public CadastroPage selecionarDataNascimento(int dia, int mes, int ano) {
+        service.selecionarDiaMesAno(this.browser, dia, mes, ano);
         return this;
     }
 
@@ -162,7 +141,6 @@ public class CadastroPage {
     public CadastroPage rolarPaginaParaBaixo() {
         JavascriptExecutor jse = (JavascriptExecutor) browser;
         jse.executeScript("window.scrollBy(0,500);");
-
         return this;
     }
 

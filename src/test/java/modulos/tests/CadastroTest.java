@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import paginas.HomePage;
-import paginas.LoginPage;
 import service.ServiceTest;
 
 public class CadastroTest {
@@ -27,15 +26,15 @@ public class CadastroTest {
 
         new HomePage(browser)
                 .selecionarBotaoLoginECadastrar()
-                .preencherCampoNovoNomeParaCadastro("teste30")
-                .preencherCampoEmailParaCadastro("teste30@email.com")
+                .preencherCampoNovoNomeParaCadastro("teste31")
+                .preencherCampoEmailParaCadastro("teste31@email.com")
                 .clicarNoBotaoCriarNovaConta()
                 .escolherTitulo(1)
                 .definirSenha("senhanova123")
-                .selecionarDiaMesAno(10, 5, 1)
+                .selecionarDataNascimento(10, 5, 1)
                 .selecionarCheckboxUm()
                 .selecionarCheckboxDois()
-                .preencherCampoPrimeiroNome("teste30")
+                .preencherCampoPrimeiroNome("teste31")
                 .preencherCampoUltimoNome("testando")
                 .preencherCampoEmpresa("Google")
                 .preencherCampoEndereco("Times Square")

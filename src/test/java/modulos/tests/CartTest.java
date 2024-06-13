@@ -104,7 +104,7 @@ public class CartTest {
                 .clicarNoBotaoCriarNovaConta()
                 .escolherTitulo(1)
                 .definirSenha("senhanova123")
-                .selecionarDiaMesAno(10, 5, 1) //Ano subentende-se que o valor 1
+                .selecionarDataNascimento(10, 5, 1) //Ano subentende-se que o valor 1
                 // seria o ano 2021 e vamos até 1900 ou seja o ultimo valor valido seria 121
                 .selecionarCheckboxUm()
                 .selecionarCheckboxDois()
@@ -153,7 +153,7 @@ public class CartTest {
                 .clicarNoBotaoCriarNovaConta()
                 .escolherTitulo(1)
                 .definirSenha("senhanova123")
-                .selecionarDiaMesAno(10, 5, 1) //Ano subentende-se que o valor 1
+                .selecionarDataNascimento(10, 5, 1) //Ano subentende-se que o valor 1
                 // seria o ano 2021 e vamos até 1900 ou seja o ultimo valor valido seria 121
                 .selecionarCheckboxUm()
                 .selecionarCheckboxDois()
@@ -299,7 +299,7 @@ public class CartTest {
                 .clicarNoBotaoCriarNovaConta()
                 .escolherTitulo(1)
                 .definirSenha("senhanova123")
-                .selecionarDiaMesAno(10, 5, 1) //Ano subentende-se que o valor 1
+                .selecionarDataNascimento(10, 5, 1) //Ano subentende-se que o valor 1
                 // seria o ano 2021 e vamos até 1900 ou seja o ultimo valor valido seria 121
                 .selecionarCheckboxUm()
                 .selecionarCheckboxDois()

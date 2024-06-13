@@ -4,14 +4,58 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+@SuppressWarnings({"UnusedReturnValue", "unused", "FieldMayBeFinal"})
 public class CadastroPage {
 
     private WebDriver browser;
 
+    @FindBy(name = "password")
+    private WebElement campoSenha;
+
+    @FindBy(id = "newsletter")
+    private WebElement primeiroCheckbox;
+
+    @FindBy(name = "optin")
+    private WebElement segundoCheckbox;
+
+    @FindBy(id = "first_name")
+    private WebElement campoPrimeiroNome;
+
+    @FindBy(id = "last_name")
+    private WebElement campoUltimoNome;
+
+    @FindBy(id = "company")
+    private WebElement campoEmpresa;
+
+    @FindBy(id = "address1")
+    private WebElement campoEndereco;
+
+    @FindBy(name = "country")
+    private WebElement campoPais;
+
+    @FindBy(id = "state")
+    private WebElement campoEstado;
+
+    @FindBy(id = "city")
+    private WebElement campoCidade;
+
+    @FindBy(id = "zipcode")
+    private WebElement campoCEP;
+
+    @FindBy(name = "mobile_number")
+    private WebElement campoNumeroCelular;
+
+    @FindBy(css = "button[data-qa='create-account']")
+    private WebElement botaoCriarConta;
+
+
     public CadastroPage(WebDriver browser) {
         this.browser = browser;
+        PageFactory.initElements(this.browser, this);
     }
 
     public CadastroPage escolherTitulo(int titulo) {
@@ -26,7 +70,7 @@ public class CadastroPage {
     }
 
     public CadastroPage definirSenha(String senha) {
-        browser.findElement(By.name("password")).sendKeys(senha);
+        campoSenha.sendKeys(senha);
         return this;
     }
 
@@ -60,59 +104,58 @@ public class CadastroPage {
     }
 
     public CadastroPage selecionarCheckboxUm() {
-        browser.findElement(By.id("newsletter")).click();
+        primeiroCheckbox.click();
         return this;
     }
 
     public CadastroPage selecionarCheckboxDois() {
-        browser.findElement(By.name("optin")).click();
+        segundoCheckbox.click();
         return this;
     }
 
     public CadastroPage preencherCampoPrimeiroNome(String primeiroNome) {
-        browser.findElement(By.id("first_name")).sendKeys(primeiroNome);
+        campoPrimeiroNome.sendKeys(primeiroNome);
         return this;
     }
 
     public CadastroPage preencherCampoUltimoNome(String ultimoNome) {
-        browser.findElement(By.id("last_name")).sendKeys(ultimoNome);
+        campoUltimoNome.sendKeys(ultimoNome);
         return this;
     }
 
     public CadastroPage preencherCampoEmpresa(String empresa) {
-        browser.findElement(By.id("company")).sendKeys(empresa);
+        campoEmpresa.sendKeys(empresa);
         return this;
     }
 
     public CadastroPage preencherCampoEndereco(String endereco) {
-        browser.findElement(By.id("address1")).sendKeys(endereco);
+        campoEndereco.sendKeys(endereco);
         return this;
     }
 
     public CadastroPage selecionarPais(String pais) {
-        WebElement elementPais = browser.findElement(By.name("country"));
-        Select selectPais = new Select(elementPais);
+        Select selectPais = new Select(campoPais);
         selectPais.selectByValue(pais);
         return this;
     }
 
     public CadastroPage preencherCampoEstado(String estado) {
-        browser.findElement(By.id("state")).sendKeys(estado);
+        campoEstado.sendKeys(estado);
         return this;
     }
 
     public CadastroPage preencherCampoCidade(String cidade) {
-        browser.findElement(By.id("city")).sendKeys(cidade);
+        campoCidade.sendKeys(cidade);
         return this;
     }
 
     public CadastroPage preencherCep(String cep) {
-        browser.findElement(By.id("zipcode")).sendKeys(cep);
+        campoCEP.sendKeys(cep);
         return this;
     }
 
     public CadastroPage preencherCelular(String celular) {
-        browser.findElement(By.name("mobile_number")).sendKeys(celular);
+        campoNumeroCelular.sendKeys(celular);
         return this;
     }
 
@@ -124,7 +167,7 @@ public class CadastroPage {
     }
 
     public ContaCriadaPage clicarNoBotaoCriarConta() {
-        browser.findElement(By.cssSelector("button[data-qa='create-account']")).click();
+        botaoCriarConta.click();
         return new ContaCriadaPage(browser);
     }
 

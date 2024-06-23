@@ -149,4 +149,25 @@ public class CadastroPage {
         return new ContaCriadaPage(browser);
     }
 
+    public ContaCriadaPage preencherPaginaDeCadastro() {
+
+        escolherTitulo(1);
+        definirSenha("teste123");
+        selecionarDataNascimento(10, 5, 1);
+        selecionarCheckboxUm();
+        selecionarCheckboxDois();
+        preencherCampoPrimeiroNome("test7");
+        preencherCampoUltimoNome("TestesNovoDois");
+        preencherCampoEmpresa("EmpresaNova");
+        preencherCampoEndereco("Rua Nova");
+        selecionarPais("United States");
+        rolarPaginaParaBaixo();
+        preencherCampoEstado("New York");
+        preencherCampoCidade("New York");
+        preencherCep("10036");
+        preencherCelular("999999999");
+        clicarNoBotaoCriarConta();
+        return new ContaCriadaPage(browser);
+    }
+
 }

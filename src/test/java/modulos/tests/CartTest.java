@@ -99,26 +99,10 @@ public class CartTest {
                 .selecionarContinuarParaCarrinho()
                 .selecionarBotaoProcederParaCheckout()
                 .selecionarBotaoRegistroOuLogin()
-                .preencherCampoNovoNomeParaCadastro("test6")
-                .preencherCampoEmailParaCadastro("testesbr6@email.com")
+                .preencherCampoNovoNomeParaCadastro("test7")
+                .preencherCampoEmailParaCadastro("testesbr7@email.com")
                 .clicarNoBotaoCriarNovaConta()
-                .escolherTitulo(1)
-                .definirSenha("senhanova123")
-                .selecionarDataNascimento(10, 5, 1) //Ano subentende-se que o valor 1
-                // seria o ano 2021 e vamos até 1900 ou seja o ultimo valor valido seria 121
-                .selecionarCheckboxUm()
-                .selecionarCheckboxDois()
-                .preencherCampoPrimeiroNome("test5")
-                .preencherCampoUltimoNome("testando")
-                .preencherCampoEmpresa("Google")
-                .preencherCampoEndereco("Times Square")
-                .selecionarPais("United States")
-                .rolarPaginaParaBaixo()
-                .preencherCampoEstado("New York")
-                .preencherCampoCidade("New York")
-                .preencherCep("10036")
-                .preencherCelular("999999999")
-                .clicarNoBotaoCriarConta()
+                .preencherPaginaDeCadastro()
                 .clicarNoBotaoContinuar()
                 .selecionarBotaoParaCarrinho()
                 .botaoCheckout()
@@ -132,7 +116,7 @@ public class CartTest {
 
         WebElement usuarioLogado = browser.findElement(By.xpath("//a[text()=' Logged in as ']"));
         String actual = usuarioLogado.getText();
-        String expected = "Logged in as test6";
+        String expected = "Logged in as test7";
         Assertions.assertEquals(expected, actual);
 
         WebElement pedidoRealizado = browser.findElement(By.xpath("//p[text()='Congratulations! Your order has been confirmed!']"));

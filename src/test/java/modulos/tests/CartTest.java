@@ -99,8 +99,8 @@ public class CartTest {
                 .selecionarContinuarParaCarrinho()
                 .selecionarBotaoProcederParaCheckout()
                 .selecionarBotaoRegistroOuLogin()
-                .preencherCampoNovoNomeParaCadastro("test7")
-                .preencherCampoEmailParaCadastro("testesbr7@email.com")
+                .preencherCampoNovoNomeParaCadastro("test9")
+                .preencherCampoEmailParaCadastro("testesbr9@email.com")
                 .clicarNoBotaoCriarNovaConta()
                 .preencherCamposDaPaginaDeCadastro()
                 .clicarNoBotaoContinuar()
@@ -112,7 +112,7 @@ public class CartTest {
 
         WebElement usuarioLogado = browser.findElement(By.xpath("//a[text()=' Logged in as ']"));
         String actual = usuarioLogado.getText();
-        String expected = "Logged in as test7";
+        String expected = "Logged in as test9";
         Assertions.assertEquals(expected, actual);
 
         WebElement pedidoRealizado = browser.findElement(By.xpath("//p[text()='Congratulations! Your order has been confirmed!']"));
@@ -142,7 +142,7 @@ public class CartTest {
                 .preencherCampoEmpresa("Google")
                 .preencherCampoEndereco("Times Square")
                 .selecionarPais("United States")
-                .rolarPaginaParaBaixo()
+                .rolarPaginaParaBaixo(500)
                 .preencherCampoEstado("New York")
                 .preencherCampoCidade("New York")
                 .preencherCep("10036")
@@ -288,7 +288,7 @@ public class CartTest {
                 .preencherCampoEmpresa("Google")
                 .preencherCampoEndereco("Times Square")
                 .selecionarPais("United States")
-                .rolarPaginaParaBaixo()
+                .rolarPaginaParaBaixo(500)
                 .preencherCampoEstado("New York")
                 .preencherCampoCidade("New York")
                 .preencherCep("10036")

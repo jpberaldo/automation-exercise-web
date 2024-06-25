@@ -1,6 +1,7 @@
 package service;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -54,6 +55,11 @@ public class ServiceTest {
         } else {
             throw new IllegalArgumentException("Você deve selecionar um ano entre 1900 e 2021");
         }
+    }
+
+    public void rolarPagina(int valor) {
+        JavascriptExecutor jse = (JavascriptExecutor) this.browser;
+        jse.executeScript("window.scrollBy(0," + valor + ");");
     }
 
 }

@@ -39,7 +39,7 @@ public class CadastroTest {
                 .preencherCampoEmpresa("Google")
                 .preencherCampoEndereco("Times Square")
                 .selecionarPais("United States")
-                .rolarPaginaParaBaixo()
+                .rolarPaginaParaBaixo(500)
                 .preencherCampoEstado("New York")
                 .preencherCampoCidade("New York")
                 .preencherCep("10036")

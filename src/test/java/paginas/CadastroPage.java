@@ -1,7 +1,6 @@
 package paginas;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -138,9 +137,8 @@ public class CadastroPage {
         return this;
     }
 
-    public CadastroPage rolarPaginaParaBaixo() {
-        JavascriptExecutor jse = (JavascriptExecutor) browser;
-        jse.executeScript("window.scrollBy(0,500);");
+    public CadastroPage rolarPaginaParaBaixo(int valor) {
+        service.rolarPagina(valor);
         return this;
     }
 
@@ -156,12 +154,12 @@ public class CadastroPage {
         selecionarDataNascimento(10, 5, 1);
         selecionarCheckboxUm();
         selecionarCheckboxDois();
-        preencherCampoPrimeiroNome("test7");
+        preencherCampoPrimeiroNome("test9");
         preencherCampoUltimoNome("TestesNovoDois");
         preencherCampoEmpresa("EmpresaNova");
         preencherCampoEndereco("Rua Nova");
         selecionarPais("United States");
-        rolarPaginaParaBaixo();
+        rolarPaginaParaBaixo(500);
         preencherCampoEstado("New York");
         preencherCampoCidade("New York");
         preencherCep("10036");

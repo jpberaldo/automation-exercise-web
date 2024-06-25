@@ -102,16 +102,12 @@ public class CartTest {
                 .preencherCampoNovoNomeParaCadastro("test7")
                 .preencherCampoEmailParaCadastro("testesbr7@email.com")
                 .clicarNoBotaoCriarNovaConta()
-                .preencherPaginaDeCadastro()
+                .preencherCamposDaPaginaDeCadastro()
                 .clicarNoBotaoContinuar()
                 .selecionarBotaoParaCarrinho()
                 .botaoCheckout()
                 .selecionarBotaoPlaceOrder()
-                .preencherNomeCartao()
-                .preencherNumeroCartao()
-                .preencherCVC()
-                .preencherMesCartao()
-                .preencherAnoCartao()
+                .preencherCamposDaPaginaDoCartao()
                 .selecionarBotaoConfirmar();
 
         WebElement usuarioLogado = browser.findElement(By.xpath("//a[text()=' Logged in as ']"));

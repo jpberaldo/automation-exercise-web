@@ -62,4 +62,13 @@ public class PaymentPage {
         botaoConfirmar.click();
         return new InicialLogonPage(browser);
     }
+
+    public PaymentPage preencherCamposDaPaginaDoCartao() {
+        preencherNomeCartao();
+        preencherNumeroCartao();
+        preencherCVC();
+        preencherMesCartao();
+        preencherAnoCartao();
+        return this;
+    }
 }

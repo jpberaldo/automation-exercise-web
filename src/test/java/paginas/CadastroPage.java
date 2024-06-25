@@ -149,7 +149,7 @@ public class CadastroPage {
         return new ContaCriadaPage(browser);
     }
 
-    public ContaCriadaPage preencherPaginaDeCadastro() {
+    public ContaCriadaPage preencherCamposDaPaginaDeCadastro() {
 
         escolherTitulo(1);
         definirSenha("teste123");

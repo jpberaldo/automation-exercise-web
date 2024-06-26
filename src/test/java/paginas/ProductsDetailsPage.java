@@ -1,11 +1,11 @@
 package paginas;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import service.ServiceTest;
 
 @SuppressWarnings({"UnusedReturnValue", "unused", "FieldMayBeFinal", "unchecked"})
 public class ProductsDetailsPage implements fecharBotaoDePropaganda {
@@ -17,6 +17,8 @@ public class ProductsDetailsPage implements fecharBotaoDePropaganda {
 
     @FindBy(css = "button[type='button']")
     private WebElement botaoAdicionarProduto;
+
+    private ServiceTest service = new ServiceTest();
 
     public ProductsDetailsPage(WebDriver browser) {
         this.browser = browser;
@@ -39,8 +41,7 @@ public class ProductsDetailsPage implements fecharBotaoDePropaganda {
                 produtoSelecionado.click();
 
             } else if (!produtoSelecionado.isDisplayed()) {
-                JavascriptExecutor jse = (JavascriptExecutor) browser;
-                jse.executeScript("window.scrollBy(0,750);");
+                service.rolarPagina(750);
                 produtoSelecionado.click();
 
             }

@@ -1,12 +1,12 @@
 package paginas;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import service.ServiceTest;
 
 @SuppressWarnings({"UnusedReturnValue", "unused", "FieldMayBeFinal", "unchecked"})
 public class ProductsPage implements fecharBotaoDePropaganda {
@@ -31,6 +31,7 @@ public class ProductsPage implements fecharBotaoDePropaganda {
     @FindBy(id = "button-review")
     private WebElement botaoEnviarRevisao;
 
+    private ServiceTest service = new ServiceTest();
 
     public ProductsPage(WebDriver browser) {
         this.browser = browser;
@@ -38,8 +39,7 @@ public class ProductsPage implements fecharBotaoDePropaganda {
     }
 
     public ProductsDetailsPage selecionarProduto(int numeroProduto) {
-        JavascriptExecutor jse = (JavascriptExecutor) browser;
-        jse.executeScript("window.scrollBy(0,250);");
+        service.rolarPagina(250);
         WebElement produto = browser.findElement(By.cssSelector("a[href='/product_details/" + numeroProduto + "']"));
         produto.click();
         return new ProductsDetailsPage(browser);
@@ -53,8 +53,7 @@ public class ProductsPage implements fecharBotaoDePropaganda {
     }
 
     public ContinuarOuAdicionarProdutosPage adicionarProdutoAoCarrinho(int numeroProduto) {
-        JavascriptExecutor jse = (JavascriptExecutor) browser;
-        jse.executeScript("window.scrollBy(0,250);");
+        service.rolarPagina(250);
         WebElement centralizarMouseNoProdutoSelecionado = browser.findElement(By.cssSelector("a[data-product-id='" + numeroProduto + "']"));
         new Actions(browser)
                 .moveToElement(centralizarMouseNoProdutoSelecionado)
@@ -66,9 +65,7 @@ public class ProductsPage implements fecharBotaoDePropaganda {
     }
 
     public BrandPage selecionarBrand(int opcao) {
-
-        JavascriptExecutor jse = (JavascriptExecutor) browser;
-        jse.executeScript("window.scrollBy(0,500);");
+        service.rolarPagina(500);
 
         if (opcao == 1) {
             browser.findElement(By.cssSelector("a[href='/brand_products/Polo']")).click();
@@ -81,11 +78,8 @@ public class ProductsPage implements fecharBotaoDePropaganda {
     }
 
     public ProductsPage visualizarUmProduto() {
-
-        JavascriptExecutor jse = (JavascriptExecutor) browser;
-        jse.executeScript("window.scrollBy(0,500);");
+        service.rolarPagina(500);
         browser.findElement(By.cssSelector("a[href='/product_details/1']")).click();
-
         return this;
     }
 
@@ -100,8 +94,7 @@ public class ProductsPage implements fecharBotaoDePropaganda {
     }
 
     public ProductsPage preencherRevisaoDoProduto(String descricao) {
-        JavascriptExecutor jse = (JavascriptExecutor) browser;
-        jse.executeScript("window.scrollBy(0,500);");
+        service.rolarPagina(500);
         campoRevisao.sendKeys(descricao);
         return this;
     }
